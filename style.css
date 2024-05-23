@@ -5,3 +5,13 @@
     border: transparent;
     padding: 10px 20px;
 }
+
+
+.recipe_list {
+    display: flex;
+}
+
+.recipe_thumbnail {
+    border: 1px black solid;
+    border-radius: 5px;
+}

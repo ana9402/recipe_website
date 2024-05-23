@@ -26,16 +26,8 @@ require_once(__DIR__ . '/functions.php');
 <body class="d-flex flex-column min-vh-100">
     <?php require_once(__DIR__ . '/header.php'); ?>
     <div class="container">
-        <!-- inclusion de l'entête du site -->
-        <?php require_once(__DIR__ . '/header.php'); ?>
         <h1>Site de recettes</h1>
-
-        <?php foreach (getRecipes($recipes) as $recipe) : ?>
-            <article>
-                <h3><?php echo $recipe['title']; ?></h3>
-                <div><?php echo $recipe['rating']; ?></div>
-            </article>
-        <?php endforeach ?>
+        <?php require_once(__DIR__ . '/widget.php'); ?>
     </div>
 
     <!-- inclusion du bas de page du site -->
