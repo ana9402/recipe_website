@@ -12,14 +12,15 @@ function isValidRecipe(array $recipe) : bool
     return $isEnabled;
 }
 
-function displayAuthor(string $authorEmail, array $users) : string
+function displayAuthor(string $authorEmail, array $users): string
 {
-    for ($i = 0; $i < count($users); $i++) {
-        $author = $users[$i];
-        if ($authorEmail === $author['email']) {
-            return $author['full_name'] . '(' . $author['age'] . ' ans)';
+    foreach ($users as $user) {
+        if ($authorEmail === $user['email']) {
+            return $user['username'];
         }
     }
+
+    return 'Auteur inconnu';
 }
 
 function getRecipes(array $recipes) : array
