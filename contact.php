@@ -12,9 +12,8 @@
     >
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <div class="container">
-
     <?php include_once('header.php'); ?>
+    <div class="container">
         <h1>Contactez nous</h1>
         <form action="submit_contact.php" method="GET">
             <div>
