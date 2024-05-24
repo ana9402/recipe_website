@@ -1,9 +1,37 @@
 <?php
+
 require_once(__DIR__ . '/core/init.php');
+require_once(__DIR__ . '/config/mysql.php');
+require_once(__DIR__ . '/databaseconnect.php');
 $pageTitle = 'S\'inscrire';
 
 // Définir le contenu de la page
 ob_start();
+?>
+
+<?php
+    if($_SERVER["REQUEST_METHOD"] == "POST") { 
+        
+        $username = $_REQUEST['username'];
+        $email = $_REQUEST['email'];
+        $password = $_REQUEST['password'];
+        $secondPassword = $_REQUEST['second-password'];
+
+        if ($password !== $secondPassword) {
+            echo "Les mots de passe ne correspondent pas";
+        } else {
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (email, password, username) VALUES (?, ?, ?)";
+            $mysqlClient = $mysqlClient->prepare($sql);
+            $mysqlClient->execute([$email, $hashedPassword, $username]);
+
+            header("Location: /index.php");
+            exit();
+        }
+    }
+
 ?>
 
 <!-- contenu du site -->
@@ -13,19 +41,23 @@ ob_start();
             <h1 class="text-center mb-3">S'inscrire</h1>
             <p class="text-center">Créez votre compte.</p>
             <div class="signin-block my-auto p-5">
-                <form method="post" action="/login" class="signin-block_form">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="signin-block_form">
                     <div class="d-flex flex-column gap-3">
-                        <div class="d-flex flex-column signin-block_form_input">
-                            <label for="login-email" class="form-label visually-hidden">Email *</label>
-                            <input type="email" id="login-email" name="login-email" placeholder="Email *" class="form-control">
+                    <div class="d-flex flex-column signin-block_form_input">
+                            <label for="username" class="form-label visually-hidden">Pseudo *</label>
+                            <input type="username" id="username" name="username" placeholder="Pseudo *" class="form-control">
                         </div>
                         <div class="d-flex flex-column signin-block_form_input">
-                            <label for="login-password" class="form-label visually-hidden">Mot de passe *</label>
-                            <input type="input" id="login-password" name="login-password" placeholder="Mot de passe *" class="form-control">
+                            <label for="email" class="form-label visually-hidden">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="Email *" class="form-control">
                         </div>
                         <div class="d-flex flex-column signin-block_form_input">
-                            <label for="login-second_password" class="form-label visually-hidden">Confirmez votre mot de passe *</label>
-                            <input type="input" id="login-second_password" name="login-second_password" placeholder="Confirmez votre mot de passe *" class="form-control">
+                            <label for="password" class="form-label visually-hidden">Mot de passe *</label>
+                            <input type="input" id="password" name="password" placeholder="Mot de passe *" class="form-control">
+                        </div>
+                        <div class="d-flex flex-column signin-block_form_input">
+                            <label for="second-password" class="form-label visually-hidden">Confirmez votre mot de passe *</label>
+                            <input type="input" id="second-password" name="second-password" placeholder="Confirmez votre mot de passe *" class="form-control">
                         </div>
                         <p class="d-flex align-items-start gap-2">
                             <input type="checkbox" id="cgu-validation" name="cgu-validation" class="mt-1">
