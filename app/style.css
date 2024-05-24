@@ -1,0 +1,52 @@
+#header_login-btn a{
+    text-decoration: none;
+    color: white;
+}
+
+.text-primary {
+    color: #e89b9b;
+}
+
+.btn-primary {
+    background-color: #e89b9b;
+    border-radius: 20px;
+    color: white;
+    border: transparent;
+    padding: 10px 20px;
+}
+
+.btn-secondary {
+    background-color: white;
+    border-radius: 20px;
+    color: #e89b9b;
+    border: 1px solid #e89b9b;
+    padding: 10px 20px;
+}
+
+.recipe_thumbnail {
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.rounded-block {
+    border-radius: .375rem;
+}
+
+/* LOGIN PAGE */
+.bg-login {
+    background-color: rgb(218, 222, 226);
+}
+
+.signin-block_form label {
+    font-weight: bold;
+}
+
+.signin-block_form_input {
+    margin-bottom: 20px;
+}
+
+.signin-block_form_input input {
+    border: 0;
+    border-bottom: 1px grey solid;
+
+}
