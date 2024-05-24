@@ -45,22 +45,22 @@ ob_start();
                     <div class="d-flex flex-column gap-3">
                     <div class="d-flex flex-column signin-block_form_input">
                             <label for="username" class="form-label visually-hidden">Pseudo *</label>
-                            <input type="username" id="username" name="username" placeholder="Pseudo *" class="form-control">
+                            <input type="username" id="username" name="username" placeholder="Pseudo *" class="form-control" required>
                         </div>
                         <div class="d-flex flex-column signin-block_form_input">
                             <label for="email" class="form-label visually-hidden">Email *</label>
-                            <input type="email" id="email" name="email" placeholder="Email *" class="form-control">
+                            <input type="email" id="email" name="email" placeholder="Email *" class="form-control" required>
                         </div>
                         <div class="d-flex flex-column signin-block_form_input">
                             <label for="password" class="form-label visually-hidden">Mot de passe *</label>
-                            <input type="input" id="password" name="password" placeholder="Mot de passe *" class="form-control">
+                            <input type="input" id="password" name="password" placeholder="Mot de passe *" class="form-control" required>
                         </div>
                         <div class="d-flex flex-column signin-block_form_input">
                             <label for="second-password" class="form-label visually-hidden">Confirmez votre mot de passe *</label>
-                            <input type="input" id="second-password" name="second-password" placeholder="Confirmez votre mot de passe *" class="form-control">
+                            <input type="input" id="second-password" name="second-password" placeholder="Confirmez votre mot de passe *" class="form-control" required>
                         </div>
                         <p class="d-flex align-items-start gap-2">
-                            <input type="checkbox" id="cgu-validation" name="cgu-validation" class="mt-1">
+                            <input type="checkbox" id="cgu-validation" name="cgu-validation" class="mt-1" required>
                             <label for="cgu-validation" class="form-label small">J’accepte les <a href="#">Conditions Générales d'Utilisation</a> et reconnais avoir été informé(e) que mes données personnelles seront utilisées tel que décrit ci-dessous. *</label>
                         </p>
                     </div>
