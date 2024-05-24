@@ -1,10 +1,6 @@
 <!-- inclusion des variables et fonctions -->
 <?php
-session_start();
-require_once(__DIR__ . '/config/mysql.php');
-require_once(__DIR__ . '/databaseconnect.php');
-require_once(__DIR__ . '/variables.php');
-require_once(__DIR__ . '/functions.php');
+require_once(__DIR__ . '/core/init.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +22,7 @@ require_once(__DIR__ . '/functions.php');
 <body class="d-flex flex-column min-vh-100">
        <!-- footer du site -->
     <?php require_once(__DIR__ . '/views/header.php'); ?>
-    
+
        <!-- contenu du site -->
     <div class="container">
         <h1>Vos inspirations <span class="text-primary">culinaires</span>.</h1>
