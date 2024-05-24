@@ -28,7 +28,7 @@ ob_start();
                     <div class="d-flex flex-column align-items-center gap-3 mt-3">
                         <input type="submit" value="Se connecter" class="btn btn-primary w-75 mx-auto">
                         <p class="text-center mb-0">ou</p>
-                        <a href="#" class="btn btn-secondary w-75 mx-auto">Créer un compte</a>
+                        <a href="signup.php" class="btn btn-secondary w-75 mx-auto">Créer un compte</a>
                     </div>
                 </form>
             </div>

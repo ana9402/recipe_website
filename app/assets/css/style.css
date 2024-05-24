@@ -3,6 +3,10 @@
     color: white;
 }
 
+.small {
+    font-size: 0.7rem;
+}
+
 .text-primary {
     color: #e89b9b;
 }
@@ -35,10 +39,6 @@
 /* LOGIN PAGE */
 .bg-login {
     background-color: rgb(218, 222, 226);
-}
-
-.signin-block_form label {
-    font-weight: bold;
 }
 
 .signin-block_form_input {
