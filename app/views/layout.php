@@ -7,7 +7,6 @@
     <title><?php echo $pageTitle ?? 'Site de recettes'; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/css/style.css" rel="stylesheet">
-    <script src="http://localhost:8888/livereload.js"></script>
 </head>
 <body class="min-vh-100">
     <!-- header du site -->

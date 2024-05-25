@@ -1,14 +1,16 @@
-#header_login-btn a{
-    text-decoration: none;
-    color: white;
-}
-
-.small {
-    font-size: 0.7rem;
+/*************** MAIN STYLE ***************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .text-primary {
     color: #e89b9b;
+}
+
+.small {
+    font-size: 0.7rem;
 }
 
 .btn-primary {
@@ -19,12 +21,24 @@
     padding: 10px 20px;
 }
 
+.btn-primary a {
+    color: white;
+}
+
 .btn-secondary {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 20%;
     color: #e89b9b;
     border: 1px solid #e89b9b;
     padding: 10px 20px;
+}
+
+.btn-secondary a {
+    color: #e89b9b !important;
+}
+
+.btn a {
+    text-decoration: none !important;
 }
 
 .recipe_thumbnail {

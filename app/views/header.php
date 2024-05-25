@@ -1,5 +1,3 @@
-<script src="http://localhost:35729/livereload.js"></script>
-
 <!-- header.php -->
 <div class="shadow px-4">
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -13,13 +11,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.php">Recipes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.php">Contact</a>
+            <a class="nav-link" href="#">Les recettes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="recipe-form.php">Partager une recette</a>

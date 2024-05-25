@@ -19,6 +19,13 @@ $recipe = $stmt->fetch();
         <div class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block">
             <?php if($recipe): ?>
                 <h1 class="text-center mb-5"><?php echo htmlspecialchars($recipe['title']) ?></h1>
+                <p>
+                    <?php if(isset($recipe['rating'])): ?>
+                        <?php echo htmlspecialchars($recipe['rating'])?>/5
+                    <?php else: ?>
+                        -/5
+                    <?php endif; ?>
+                </p>
                 <div>
                     <h2>Ingrédients</h2>
                     <p><?php echo htmlspecialchars($recipe['ingredients'])?></p>
