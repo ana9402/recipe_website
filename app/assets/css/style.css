@@ -15,6 +15,7 @@ a {
 h1 {
     font-weight: 700;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    margin-bottom: 40px;
 }
 
 h2 {
@@ -87,20 +88,20 @@ footer .footer-links_item a {
 }
 
 /* LAST RECIPE WIDGET THUMBNAIL */
-#last-recipes-widget .recipe_thumbnail h3 {
+.recipe_thumbnail h3 {
     font-size: 18px;
     font-weight: bold;
 }
 
-#last-recipes-widget a {
+a {
     color: black;
 }
 
-#last-recipes-widget .recipe_thumbnail-img {
+.recipe_thumbnail-img {
     border-radius: 5px;
 }
 
-#last-recipes-widget .recipe_thumbnail-img img {
+.recipe_thumbnail-img img {
     width: 100%;
     height: 150px;
     object-fit: cover;

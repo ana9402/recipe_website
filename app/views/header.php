@@ -14,7 +14,7 @@
             <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Les recettes</a>
+            <a class="nav-link" href="recipes-list.php">Les recettes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="recipe-form.php">Partager une recette</a>
