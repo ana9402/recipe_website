@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="recipe-form.php">Partager une recette</a>
+          </li>
         </ul>
       </div>
       <div>

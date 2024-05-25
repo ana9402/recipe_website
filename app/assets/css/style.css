@@ -50,3 +50,12 @@
     border-bottom: 1px grey solid;
 
 }
+
+/***** RECIPE CREATION PAGE *****/
+.newRecipe-block_form_input {
+    margin-bottom: 30px;
+}
+
+.newRecipe-block_form_input label {
+    font-weight: bold;
+}
