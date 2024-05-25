@@ -18,8 +18,7 @@
       </ul>
     </div>
     <div>
-      © 2024 Copyright:
-      <a class="text-light" href="#">Crème</a>
+      © 2024 Copyright: Anaïs Kalboussi
     </div>
   </div>
 </footer>

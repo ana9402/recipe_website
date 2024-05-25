@@ -8,7 +8,10 @@ $pageTitle = 'Recette';
 ob_start();
 
 $id = $_GET['id'];
-$sql = 'SELECT * from recipes WHERE id = :id';
+$sql = 'SELECT recipes.*, categories.name AS category_name
+        FROM recipes
+        LEFT JOIN categories ON recipes.category_id = categories.id
+        WHERE recipes.id = :id';
 $stmt = $mysqlClient->prepare($sql);
 $stmt->execute(['id' => $id]);
 $recipe = $stmt->fetch();
@@ -19,6 +22,9 @@ $recipe = $stmt->fetch();
         <div class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block">
             <?php if ($recipe): ?>
                 <h1 class="text-center mb-5"><?php echo htmlspecialchars($recipe['title']) ?></h1>
+                <div class="text-center">
+                    <p><?php echo htmlspecialchars($recipe['category_name']) ?></p>
+                </div>
                 <p>
                     <?php if (isset($recipe['rating'])): ?>
                         <?php echo htmlspecialchars($recipe['rating']) ?>/5
