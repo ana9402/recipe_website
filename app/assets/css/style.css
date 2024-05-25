@@ -1,12 +1,32 @@
 /*************** MAIN STYLE ***************/
+@import url('https://fonts.googleapis.com/css2?family=Freeman&family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: #28a5c1;
+}
+
+h1 {
+    font-weight: 700;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-weight: 500;
+}
+
 .text-primary {
-    color: #e89b9b;
+    color: #e89b9b !important;
+}
+
+.text-secondary {
+    color: #28a5c1 !important;
 }
 
 .small {
@@ -27,23 +47,50 @@
 
 .btn-secondary {
     background-color: white;
-    border-radius: 20%;
+    border-radius: 20px;
     color: #e89b9b;
     border: 1px solid #e89b9b;
     padding: 10px 20px;
 }
 
+.btn-secondary:hover {
+    background-color: #28a5c1;
+    border-radius: 20px;
+    color: white;
+    border: 1px solid #28a5c1;
+    padding: 10px 20px;
+}
+
 .btn-secondary a {
-    color: #e89b9b !important;
+    color: #e89b9b;
+}
+
+.btn-secondary a:hover {
+    color: white;
 }
 
 .btn a {
     text-decoration: none !important;
 }
+/* LAST RECIPE WIDGET THUMBNAIL */
+#last-recipes-widget .recipe_thumbnail h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
 
-.recipe_thumbnail {
-    border: 1px black solid;
+#last-recipes-widget a {
+    color: black;
+}
+
+#last-recipes-widget .recipe_thumbnail-img {
     border-radius: 5px;
+}
+
+#last-recipes-widget .recipe_thumbnail-img img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+        border-radius: 5px;
 }
 
 .rounded-block {

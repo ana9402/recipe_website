@@ -35,7 +35,7 @@ ob_start();
 ?>
 
 <!-- contenu du site -->
-<div class="bg-login">
+<div class="bg-login main-container">
     <div class="container p-5">
         <div class="mx-auto mb-5 p-5 border w-50 bg-white rounded-block">
             <h1 class="text-center mb-3">S'inscrire</h1>

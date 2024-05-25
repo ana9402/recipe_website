@@ -11,20 +11,22 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
 ?>
 
 <!-- widget.php -->
-<div class="container my-5" id="last-recipes">
+<div class="container my-5" id="last-recipes-widget">
     <div class="row mb-3">
         <h2>
-            Last published recipes
+            Les dernières recettes
         </h2>
     </div>
 
     <div class="row recipe_list d-flex gap-4">
         <?php foreach (getRecipes($recipes) as $recipe) : ?>
-            <div class="col-md-3 recipe_thumbnail p-4">
+            <div class="col-md-3 recipe_thumbnail">
+            <a href="recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">
+                <figure class="recipe_thumbnail-img">
+                    <img src="<?php echo $recipe['image']?>"/>
+                </figure>
                 <h3><?php echo $recipe['title']; ?></h3>
-                <h3><?php echo $recipe['user_id']; ?></h3>
-                <div><?php echo $recipe['rating']; ?></div>
-                <button type="button" class="btn btn-secondary"><a href="recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">Voir</a></button>
+            </a>
             </div>
         <?php endforeach ?>
     </div>
