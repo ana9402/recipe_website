@@ -29,12 +29,12 @@ ob_start();
 ?>
 
 <!-- contenu du site -->
-<div class="">
+<section id="newRecipe-section" class="">
     <div class="container p-5">
         <div class="mx-auto mb-5 p-5 border shadow-sm w-75 bg-white rounded-block">
             <h1 class="text-center mb-3">Partager une recette</h1>
-            <p class="text-center">Renseignez un maximum d'informations afin d'aider au mieux les utilisateurs.</p>
-            <div class="newRecipe-block my-auto p-5">
+            <p class="text-center mb-5">Renseignez un maximum d'informations afin d'aider au mieux les utilisateurs dans l'élaboration de votre recette.</p>
+            <div class="newRecipe-block my-auto">
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" class="newRecipe-block_form">
                     <div class="d-flex flex-column gap-3">
                         <div class="d-flex flex-column newRecipe-block_form_input">
@@ -86,7 +86,7 @@ ob_start();
             </div>
         </div>
     </div>
-</div>
+</sex>
 
 <?php
 $content = ob_get_clean();

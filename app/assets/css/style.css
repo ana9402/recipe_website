@@ -52,6 +52,11 @@
 }
 
 /***** RECIPE CREATION PAGE *****/
+#newRecipe-section {
+    background-image: url('../images/mariana-medvedeva-iNwCO9ycBlc-unsplash.jpg');
+    background-size: cover;
+}
+
 .newRecipe-block_form_input {
     margin-bottom: 30px;
 }
