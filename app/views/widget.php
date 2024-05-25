@@ -23,7 +23,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
             <div class="col-md-3 recipe_thumbnail">
             <a href="recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">
                 <figure class="recipe_thumbnail-img">
-                    <img src="<?php echo $recipe['image']?>"/>
+                    <img src="<?php echo $recipe['illustration']?>"/>
                 </figure>
                 <h3><?php echo $recipe['title']; ?></h3>
             </a>
