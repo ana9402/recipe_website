@@ -8,9 +8,10 @@ $pageTitle = 'Recette';
 ob_start();
 
 $id = $_GET['id'];
-$sql = 'SELECT recipes.*, categories.name AS category_name
+$sql = 'SELECT recipes.*, categories.name AS category_name, users.username as user_name
         FROM recipes
         LEFT JOIN categories ON recipes.category_id = categories.id
+        LEFT JOIN users ON recipes.user_id = users.user_id
         WHERE recipes.id = :id';
 $stmt = $mysqlClient->prepare($sql);
 $stmt->execute(['id' => $id]);
@@ -29,8 +30,9 @@ $recipe = $stmt->fetch();
             </div>
             <?php if ($recipe): ?>
                 <h1 class="text-center mb-2"><?php echo htmlspecialchars($recipe['title']) ?></h1>
-                <div class="text-center mb-3">
+                <div class="recipe-block_infos text-center mb-3">
                     <p class="recipe-category-label"><?php echo htmlspecialchars($recipe['category_name']) ?></p>
+                    <p class="recipe-author">Auteur : <?php echo htmlspecialchars($recipe['user_name'])?></p>
                 </div>
                 <div class="recipe-block recipe-block_img">
                     <figure class="w-75 text-center m-auto">

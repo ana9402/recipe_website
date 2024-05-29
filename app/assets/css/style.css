@@ -90,7 +90,7 @@ footer .footer-links_item a {
     text-decoration: underline;
 }
 
-/*************** FOOTER ***************/
+/*************** NAVBAR ***************/
 .navbar form {
     min-width: 300px;
 }
@@ -163,8 +163,16 @@ a {
     color:#e89b9b;
 }
 
+#recipeTemplate-section .top-links a:hover {
+    color:#071e82;
+}
+
 #recipeTemplate-section .recipe-block {
     margin-bottom: 30px;
+}
+
+.recipe-author {
+    font-size:13px;
 }
 
 .recipe-category-label {
