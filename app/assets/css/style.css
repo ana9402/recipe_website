@@ -14,8 +14,11 @@ a {
 
 h1 {
     font-weight: 700;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
     margin-bottom: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 h2 {
@@ -87,6 +90,11 @@ footer .footer-links_item a {
     text-decoration: underline;
 }
 
+/*************** FOOTER ***************/
+.navbar form {
+    min-width: 300px;
+}
+
 /* LAST RECIPE WIDGET THUMBNAIL */
 .recipe_thumbnail h3 {
     font-size: 18px;
@@ -114,7 +122,7 @@ a {
 
 /* LOGIN PAGE */
 .bg-login {
-    background-color: rgb(218, 222, 226);
+    background-color: rgb(7, 30, 130, 0.1);
 }
 
 .signin-block_form_input {
@@ -140,3 +148,68 @@ a {
 .newRecipe-block_form_input label {
     font-weight: bold;
 }
+
+/***** RECIPE TEMPLATE *****/
+#recipeTemplate-section {
+    background-color: rgb(7, 30, 130, 0.1);
+}
+
+#recipeTemplate-section .top-links {
+    font-size: 11px;
+    color:#e89b9b;
+}
+#recipeTemplate-section .top-links a {
+    text-decoration: underline;
+    color:#e89b9b;
+}
+
+#recipeTemplate-section .recipe-block {
+    margin-bottom: 30px;
+}
+
+.recipe-category-label {
+    display: inline-block;
+    background-color: rgb(7, 30, 130);
+    color: white;
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 13px;
+}
+
+#recipeTemplate-section .recipe-block_img figure {
+    object-fit: contain;
+}
+
+#recipeTemplate-section .recipe-block_img img {
+    width: 100%;
+    border-radius: 15px;
+}
+/*
+#recipeTemplate-section .recipe-block_description h2 {
+    position:relative;
+    display: inline-block;
+    width: 200px;
+}
+#recipeTemplate-section .recipe-block_description h2::after {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 500px;
+    right: -10%;
+    top: 50%;
+    background-color: #e89b9b;
+    transform-origin: right;
+    transform: rotate(180deg);
+
+}*/
+
+.recipe-block_description .recipe-block_description-elt {
+    margin-bottom: 30px;
+}
+
+.recipe-block_description .recipe-block_description-elt h2 i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+

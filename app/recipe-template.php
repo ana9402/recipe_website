@@ -19,30 +19,47 @@ $recipe = $stmt->fetch();
 
 <section id="recipeTemplate-section">
     <div class="container p-5">
-        <div class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block">
-            <?php if ($recipe): ?>
-                <h1 class="text-center mb-5"><?php echo htmlspecialchars($recipe['title']) ?></h1>
-                <div class="text-center">
-                    <p><?php echo htmlspecialchars($recipe['category_name']) ?></p>
-                </div>
+        <div class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
+            <div class="top-links">
                 <p>
+                    <a href="recipes-list.php">Toutes les recettes</a>
+                    <span> > </span>
+                    <span><?php echo htmlspecialchars($recipe['title'])?></span>
+                </p>
+            </div>
+            <?php if ($recipe): ?>
+                <h1 class="text-center mb-2"><?php echo htmlspecialchars($recipe['title']) ?></h1>
+                <div class="text-center mb-3">
+                    <p class="recipe-category-label"><?php echo htmlspecialchars($recipe['category_name']) ?></p>
+                </div>
+                <div class="recipe-block recipe-block_img">
+                    <figure class="w-75 text-center m-auto">
+                        <img src="<?php echo htmlspecialchars($recipe['illustration'])?>" alt=""/>
+                    </figure>
+                </div>
+                <div class="recipe-block recipe-block_rating">
                     <?php if (isset($recipe['rating'])): ?>
                         <?php echo htmlspecialchars($recipe['rating']) ?>/5
                     <?php else: ?>
                         -/5
                     <?php endif; ?>
-                </p>
-                <div>
-                    <h2>Ingrédients</h2>
-                    <p><?php echo htmlspecialchars($recipe['ingredients']) ?></p>
                 </div>
-                <div>
-                    <h2>Ustensiles</h2>
-                    <p><?php echo htmlspecialchars($recipe['tools']) ?></p>
-                </div>
-                <div>
-                    <h2>Préparation</h2>
-                    <p><?php echo htmlspecialchars($recipe['description']) ?></p>
+                <div class="recipe-block recipe-block_description">
+                    <div class="recipe-block_description-elt">
+                        <h2>
+                            <i class="fa-solid fa-plate-wheat"></i>Ingrédients</h2>
+                        <p><?php echo htmlspecialchars($recipe['ingredients']) ?></p>
+                    </div>
+                    <div class="recipe-block_description-elt">
+                        <h2>
+                            <i class="fa-solid fa-utensils"></i>Ustensiles</h2>
+                        <p><?php echo htmlspecialchars($recipe['tools']) ?></p>
+                    </div>
+                    <div class="recipe-block_description-elt">
+                        <h2>
+                            <i class="fa-solid fa-fire-burner"></i>Préparation</h2>
+                        <p><?php echo htmlspecialchars($recipe['description']) ?></p>
+                    </div>
                 </div>
             <?php else: ?>
                 <p>La recette n'existe pas.</p>
