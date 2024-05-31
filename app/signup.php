@@ -27,7 +27,7 @@ ob_start();
             $mysqlClient = $mysqlClient->prepare($sql);
             $mysqlClient->execute([$email, $hashedPassword, $username]);
 
-            header("Location: /index.php");
+            header("Location: index.php");
             exit();
         }
     }
