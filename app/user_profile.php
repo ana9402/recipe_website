@@ -26,6 +26,30 @@
             $user = $result->fetch_assoc();
         }
     }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $zipcode = $_POST['zipcode'];
+        $country = $_POST['country'];
+        $bio = $_POST['bio'];
+
+        $sql = "UPDATE users SET username = ?, email = ?, firstname = ?, lastname = ?, address = ?, city = ?, zipcode = ?, country = ?, bio = ? WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssssssi", $username, $email, $firstname, $lastname, $address, $city, $zipcode, $country, $bio, $user_id);
+        $stmt->execute();
+
+
+        header("Location: user_profile.php");
+        exit();
+
+    }
 ?>
 
 <div class="bg-login main-container">
@@ -35,7 +59,7 @@
             <figure>
                 <img src="<?php echo htmlspecialchars($user['illustration']);?>" alt="" />
             </figure>
-            <p class="text-center text-tertiary"><?php echo htmlspecialchars(($user['username']))?></p>
+            <p class="text-center txt-primary"><?php echo htmlspecialchars(($user['username']))?></p>
             <section class="row d-flex mt-5">
                 <!-- Profile menu -->
                 <div class="col-md-3 p-3">
@@ -61,7 +85,7 @@
                 <div class="col-md-9 p-3 profile_content active" id="profile-infos">
                     <div class="p-3">
                         <h2 class="mb-4">Mes informations</h2>
-                        <form method="get" action="" class="container profile_form">
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="container profile_form">
                             <div class="row">
                                 <div class="col-md-6 profile_form-input">
                                     <label for="username" class="form-label">Pseudo *</label>
@@ -107,6 +131,9 @@
                                     <label for="bio" class="form-label">Bio</label>
                                     <textarea id="bio" name="bio" class="form-control" rows="6" value="<?php echo htmlspecialchars(($user['bio']))?>"></textarea>
                                 </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="d-block btn btn-primary ms-auto">Enregistrer</button>
                             </div>
                         </form>
                     </div>

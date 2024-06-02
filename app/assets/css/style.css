@@ -8,8 +8,7 @@
 }
 
 a {
-    text-decoration: none;
-    color: #071e82;
+    text-decoration: none !important;
 }
 
 h1 {
@@ -25,11 +24,11 @@ h2 {
     font-weight: 500;
 }
 
-.text-primary {
-    color: #e89b9b !important;
+.txt-primary {
+    color: #e89b9b!important;
 }
 
-.text-secondary {
+.txt-secondary {
     color: #071e82 !important;
 }
 
@@ -38,11 +37,11 @@ h2 {
 }
 
 .btn-primary {
-    background-color: #e89b9b;
-    border-radius: 20px;
-    color: white;
-    border: transparent;
-    padding: 10px 20px;
+    background-color: #e89b9b !important;
+    border-radius: 20px !important;
+    color: white !important;
+    border: transparent !important;
+    padding: 10px 20px !important;
 }
 
 .btn-primary:hover {
@@ -50,29 +49,33 @@ h2 {
 }
 
 .btn-primary a {
-    color: white;
+    color: white !important;
 }
 
 .btn-secondary {
-    background-color: white;
-    border-radius: 20px;
-    color: #e89b9b;
-    border: 1px solid #e89b9b;
-    padding: 10px 20px;
+    background-color: white !important;
+    border-radius: 20px !important;
+    color: #e89b9b !important;
+    border: 1px solid #e89b9b !important;
+    padding: 10px 20px !important;
 }
 
 .btn-secondary:hover {
-    background-color: white;
-    color: #071e82;
-    border: 1px solid #071e82;
+    background-color: white !important;
+    color: #071e82 !important;
+    border: 1px solid #071e82 !important;
+}
+
+.btn-secondary:hover a {
+    color: #071e82 !important;
 }
 
 .btn-secondary a {
-    color: #e89b9b;
+    color: #e89b9b !important;
 }
 
 .btn-secondary a:hover {
-    color: white;
+    color: #071e82 !important;
 }
 
 .btn a {
@@ -93,6 +96,24 @@ footer .footer-links_item a {
 /*************** NAVBAR ***************/
 .navbar form {
     min-width: 300px;
+}
+
+.navbar #profile-btn img {
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.navbar #profile-btn > a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+.navbar #profile-btn .dropdown-item a {
+    width: 100%;
+    height: 100%;
 }
 
 /* LAST RECIPE WIDGET THUMBNAIL */

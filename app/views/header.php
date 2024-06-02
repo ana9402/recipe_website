@@ -1,3 +1,17 @@
+<?php
+  require_once(__DIR__ . '/../core/init.php');
+  require_once(__DIR__ . '/../config/mysql.php');
+  require_once(__DIR__ . '/../databaseconnect.php'); 
+  require_once(__DIR__ . '/../functions.php');
+
+  $userInfo = null;
+
+  if (isset($_SESSION['user_id'])) {
+      $userInfo = getUserInfos($_SESSION['user_id'], ['illustration']);
+  }
+
+?>
+
 <!-- header.php -->
 <div class="shadow px-4">
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -31,9 +45,14 @@
         </form>
       </div>
       <?php if(isset($_SESSION['user_id'])): ?>
-        <button class="btn btn-secondary ms-5" id="header_logout-btn">
-            <a href="logout.php">Se déconnecter</a>
-        </button>
+        <div class="dropdown ms-5" id="profile-btn">
+          <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php echo htmlspecialchars($userInfo['illustration'])?>" alt="" ></a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="user_profile.php"><i class="fa-solid fa-user me-2" aria-hidden="true"></i>Voir mon profil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Se déconnecter</a></li>
+          </ul>
+        </div>
       <?php else: ?>
         <button class="btn btn-primary ms-5" id="header_login-btn">
               <a href="login.php">Se connecter</a>
@@ -42,3 +61,8 @@
     </div>
   </nav>
 </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
