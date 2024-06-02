@@ -30,26 +30,36 @@
 
 <div class="bg-login main-container">
     <div class="p-3 p-md-5">
-        <div class="container mx-auto p-5 border w-md-75 bg-white rounded-block">
+        <div class="container mx-auto p-5 border w-md-75 bg-white rounded-block" id="profile-page">
             <h1 class="text-center">Mon profil</h1>
-            <p class="text-center"><?php echo htmlspecialchars(($user['username']))?></p>
-            <section id="profile-page" class="row d-flex">
-                <div class="col-md-3 profile_menu">
-                    <ul>
-                        <li>
-                            <a href="#">Mes informations</a>
+            <figure>
+                <img src="<?php echo htmlspecialchars($user['illustration']);?>" alt="" />
+            </figure>
+            <p class="text-center text-tertiary"><?php echo htmlspecialchars(($user['username']))?></p>
+            <section class="row d-flex mt-5">
+                <!-- Profile menu -->
+                <div class="col-md-3 p-3">
+                    <ul class="profile_menu p-3">
+                        <li class="profile_menu-link">
+                            <a href="#profile-infos" class="active"><i class="fa-solid fa-user"></i>Mes informations</a>
                         </li>
-                        <li>
-                           <a href="#">Mes recettes</a>
+                        <li class="profile_menu-link">
+                           <a href="#profile-recipes">
+                            <i class="fa-solid fa-bowl-rice"></i> 
+                            Mes recettes
+                            </a>
                         </li>
-                        <li>
-                           <a href="#">Mes favoris</a>
+                        <li class="profile_menu-link">
+                           <a href="#profile-favorites">
+                            <i class="fa-solid fa-heart"></i> 
+                            Mes favoris
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-9
-                 profile-infos p-3">
-                    <div class="p-2 m-2">
+                <!-- Profile content -->
+                <div class="col-md-9 p-3 profile_content active" id="profile-infos">
+                    <div class="p-3">
                         <h2 class="mb-4">Mes informations</h2>
                         <form method="get" action="" class="container profile_form">
                             <div class="row">
@@ -101,11 +111,19 @@
                         </form>
                     </div>
                 </div>
+                <div class="col-md-9 p-3 profile_content" id="profile-recipes">
+                    Mes recettes
+                </div>
+                <div class="col-md-9 p-3 profile_content" id="profile-favorites">
+                    Mes favoris
+                </div>
             </div>
         </div>
     </div>
 
 </div>
+
+<script src="./js/script.js"></script>
 
 <?php
 $content = ob_get_clean();
