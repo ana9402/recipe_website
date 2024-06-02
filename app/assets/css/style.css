@@ -232,10 +232,23 @@ a {
     padding: 10px 20px;
 }
 
+
 #profile-page .profile_menu ul li a {
     display: block;
     width: 100%;
     height: 100%;
     text-decoration: none;
     color: inherit;
+}
+
+#profile-page form {
+    padding: 0 !important;
+}
+
+#profile-page form .profile_form-input {
+    margin-bottom:15px;
+}
+
+#profile-page form .profile_form-input label {
+    font-weight: bold;
 }
