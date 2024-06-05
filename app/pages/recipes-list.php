@@ -1,7 +1,7 @@
 <?php
-require_once(__DIR__ . '/./core/init.php');
-require_once(__DIR__ . '/./config/mysql.php');
-require_once(__DIR__ . '/./databaseconnect.php');
+require_once(__DIR__ . '/../core/init.php');
+require_once(__DIR__ . '/../config/mysql.php');
+require_once(__DIR__ . '/../databaseconnect.php');
 $pageTitle = 'Les recettes';
 ob_start();
 ?>
@@ -17,7 +17,7 @@ ob_start();
 
         <div class="row recipe_list d-flex justify-content-between">
             <?php foreach (getRecipes($recipes) as $recipe) : ?>
-                <?php require (__DIR__ . '/views/recipe-thumbnail.php'); ?>
+                <?php require (__DIR__ . '/../views/recipe-thumbnail.php'); ?>
             <?php endforeach ?>
         </div>
     </div>
@@ -26,5 +26,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once(__DIR__ . '/views/layout.php');
+require_once(__DIR__ . '/../views/layout.php');
 ?>

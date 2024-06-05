@@ -16,8 +16,8 @@
 <div class="shadow px-4">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php">
-        <img src="assets/images/logo.png" alt="" height="80">
+      <a class="navbar-brand" href="http://localhost:8888/website_recipe/app/index.php">
+        <img src="http://localhost:8888/website_recipe/app/assets/images/logo.png" alt="" height="80">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,11 +25,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="recipes-list.php">Les recettes</a>
+            <a class="nav-link" href="http://localhost:8888/website_recipe/app/pages/recipes-list.php">Les recettes</a>
           </li>
           <?php if(isset($_SESSION['user_id'])): ?>
             <li class="nav-item">
-              <a class="nav-link" href="recipe-form.php">Partager une recette</a>
+              <a class="nav-link" href="http://localhost:8888/website_recipe/app/pages/recipe-form.php">Partager une recette</a>
             </li>
           <?php endif; ?>
         </ul>
@@ -48,17 +48,17 @@
         <div class="dropdown ms-5" id="profile-btn">
           <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php echo htmlspecialchars($userInfo['illustration'])?>" alt="" ></a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="user_profile.php"><i class="fa-solid fa-user me-2" aria-hidden="true"></i>Voir mon profil</a></li>
+            <li><a class="dropdown-item" href="http://localhost:8888/website_recipe/app/pages/user_profile.php"><i class="fa-solid fa-user me-2" aria-hidden="true"></i>Voir mon profil</a></li>
             <?php if($userInfo['role_id'] == "2"): ?>
             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-wrench me-2" aria-hidden="true"></i>Administration</a></li>
             <?php endif; ?>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Se déconnecter</a></li>
+            <li><a class="dropdown-item" href="http://localhost:8888/website_recipe/app/pages/logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Se déconnecter</a></li>
           </ul>
         </div>
       <?php else: ?>
         <button class="btn btn-primary ms-5" id="header_login-btn">
-              <a href="login.php">Se connecter</a>
+              <a href="http://localhost:8888/website_recipe/app/pages/login.php">Se connecter</a>
         </button>
       <?php endif; ?>
     </div>

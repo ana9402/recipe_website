@@ -1,7 +1,7 @@
 <?php
-require_once(__DIR__ . '/core/init.php');
-require_once(__DIR__ . '/config/mysql.php');
-require_once(__DIR__ . '/databaseconnect.php');
+require_once(__DIR__ . '/../core/init.php');
+require_once(__DIR__ . '/../config/mysql.php');
+require_once(__DIR__ . '/../databaseconnect.php');
 $pageTitle = 'Se connecter';
 /*
 session_start();*/
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             // Authentification réussie
             $_SESSION['user_id'] = $user_id;
             $_SESSION['email'] = $email;
-            header('Location: index.php');
+            header('Location: ../index.php');
             exit();
         } else {
             // Mot de passe incorrect
@@ -84,5 +84,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 $content = ob_get_clean();
-require_once(__DIR__ . '/views/layout.php');
+require_once(__DIR__ . '/../views/layout.php');
 ?>

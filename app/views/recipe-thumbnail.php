@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../databaseconnect.php');
 ?>
 
 <div class="col-md-3 recipe-thumbnail">
-    <a href="recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">
+    <a href="http://localhost:8888/website_recipe/app/pages/recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">
         <figure class="recipe-thumbnail_img">
             <img src="<?php echo $recipe['illustration']?>"/>
         </figure>

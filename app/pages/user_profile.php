@@ -1,7 +1,7 @@
 <?php
-require_once (__DIR__ . '/core/init.php');
-require_once (__DIR__ . '/config/mysql.php');
-require_once (__DIR__ . '/databaseconnect.php');
+require_once (__DIR__ . '/../core/init.php');
+require_once (__DIR__ . '/../config/mysql.php');
+require_once (__DIR__ . '/../databaseconnect.php');
 ob_start();
 
 if (isset($_SESSION['user_id'])) {
@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h2>Mes recettes</h2>
                         <div class="row recipe_list d-flex">
                             <?php foreach ($user_recipes as $recipe): ?>
-                                <?php require (__DIR__ . '/views/recipe-thumbnail.php'); ?>
+                                <?php require (__DIR__ . '/../views/recipe-thumbnail.php'); ?>
                             <?php endforeach ?>
                             <ul class="pagination mt-4">
                                 <li class="page-item">
@@ -197,5 +197,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 $content = ob_get_clean();
-require_once (__DIR__ . '/views/layout.php')
+require_once (__DIR__ . '/../views/layout.php')
     ?>

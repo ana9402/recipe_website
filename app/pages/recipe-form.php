@@ -1,7 +1,7 @@
 <?php
-require_once(__DIR__ . '/core/init.php');
-require_once(__DIR__ . '/config/mysql.php');
-require_once(__DIR__ . '/databaseconnect.php');
+require_once(__DIR__ . '/../core/init.php');
+require_once(__DIR__ . '/../config/mysql.php');
+require_once(__DIR__ . '/../databaseconnect.php');
 $pageTitle = 'Partager une recette';
 
 ob_start();
@@ -120,5 +120,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once(__DIR__ . '/views/layout.php');
+require_once(__DIR__ . '/../views/layout.php');
 ?>
