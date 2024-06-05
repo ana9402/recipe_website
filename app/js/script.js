@@ -5,22 +5,29 @@ function openTab(event, tabName) {
         tabcontent[i].classList.remove('active');
         console.log('Le contenu n\'est plus actif');
     }
-
+    
     var tablinks = document.querySelectorAll('.profile_menu-link a');
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].classList.remove('active');
     }
 
     document.getElementById(tabName).classList.add('active');
-    event.currentTarget.classList.add('active');
-}
+    
+    if(event) {
+        event.currentTarget.classList.add('active');
+    }
+
+        var newUrl = window.location.origin + window.location.pathname + '?tab=' + tabName;
+        window.history.pushState({path: newUrl}, '', newUrl);
+    }
 
 document.addEventListener('DOMContentLoaded', function() {
     var links = document.querySelectorAll('.profile_menu-link a');
     links.forEach(function(link) {
         link.addEventListener('click', function(event) {
             event.preventDefault();
-            openTab(event, this.getAttribute('href').substring(1));
+            console.log(this.getAttribute('href'));
+            openTab(event, this.dataset.tab);
         });
     });
 });

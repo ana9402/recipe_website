@@ -77,6 +77,7 @@ function getRecipes(array $recipes) : array
     return $validRecipes;
 }
 
+// Get user recipes
 function getUserRecipes($conn, int $user_id): array
 {
     $sql = "SELECT * FROM recipes WHERE user_id = ?";
@@ -93,4 +94,14 @@ function getUserRecipes($conn, int $user_id): array
     }
 
     return $recipes;
+}
+
+// Check if user is author
+function isAuthor(array $current_user, int $author) : bool 
+{
+    if ($current_user['user_id'] == $author || $current_user['role_id'] == "2") {
+        return true;
+    } else {
+        return false;
+    }
 }

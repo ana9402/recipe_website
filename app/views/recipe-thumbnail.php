@@ -3,11 +3,6 @@ require_once(__DIR__ . '/../core/init.php');
 require_once(__DIR__ . '/../config/mysql.php');
 require_once(__DIR__ . '/../databaseconnect.php');
 
-$sql = "SELECT * from recipes";
-$stmt = $mysqlClient->query($sql);
-
-$recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
-
 ?>
 
 <div class="col-md-3 recipe-thumbnail">
