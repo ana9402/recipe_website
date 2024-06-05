@@ -12,8 +12,8 @@ a {
 }
 
 h1 {
-    font-weight: 700;
-    margin-bottom: 40px;
+    font-weight: bold !important;
+    margin-bottom: 40px !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -246,6 +246,9 @@ a {
 /********** USER PROFILE **********/
 #profile-page .profile_menu {
     padding-left: 0;
+}
+#profile-page .profile_content h2 {
+    margin-bottom: 40px !important;
 }
 
 #profile-page figure {

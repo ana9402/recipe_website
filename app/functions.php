@@ -1,6 +1,10 @@
 <?php
 // functions.php
 
+require_once(__DIR__ . '/config/mysql.php');
+require_once(__DIR__ . '/databaseconnect.php');
+
+// Check if recipe is valid
 function isValidRecipe(array $recipe) : bool
 {
     if (array_key_exists('is_enabled', $recipe)) {
@@ -12,6 +16,7 @@ function isValidRecipe(array $recipe) : bool
     return $isEnabled;
 }
 
+// Show author informations
 function displayAuthor(string $authorEmail, array $users): string
 {
     foreach ($users as $user) {
@@ -70,4 +75,22 @@ function getRecipes(array $recipes) : array
     }
 
     return $validRecipes;
+}
+
+function getUserRecipes($conn, int $user_id): array
+{
+    $sql = "SELECT * FROM recipes WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $recipes = [];
+    while ($row = $result->fetch_assoc()) {
+        if (isValidRecipe($row)) {
+            $recipes[] = $row;
+        }
+    }
+
+    return $recipes;
 }

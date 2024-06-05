@@ -24,6 +24,7 @@
 
         if($result->num_rows > 0) {
             $user = $result->fetch_assoc();
+            $user_recipes = getUserRecipes($conn, $user_id);
         }
     }
 
@@ -84,7 +85,7 @@
                 <!-- Profile content -->
                 <div class="col-md-9 p-3" >
                     <div class="profile_content active p-3" id="profile-infos">
-                        <h2 class="mb-4">Mes informations</h2>
+                        <h2>Mes informations</h2>
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="container profile_form">
                             <div class="row">
                                 <div class="col-md-6 profile_form-input">
@@ -138,10 +139,17 @@
                         </form>
                     </div>  
                     <div class="p-3 profile_content" id="profile-recipes">
-                        <h2 class="mb-4">Mes recettes</h2>
+                        <h2>Mes recettes</h2>
+                        <div>
+                        <div class="row recipe_list d-flex">
+                            <?php foreach ($user_recipes as $recipe) : ?>
+                                <?php require (__DIR__ . '/views/recipe-thumbnail.php'); ?>
+                            <?php endforeach ?>
+                        </div>
+                        </div>
                     </div>
                     <div class="p-3 profile_content" id="profile-favorites">
-                        <h2 class="mb-4">Mes favoris</h2>
+                        <h2>Mes favoris</h2>
                     </div>
                 </div>
             </div>
