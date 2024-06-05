@@ -82,8 +82,8 @@
                     </ul>
                 </div>
                 <!-- Profile content -->
-                <div class="col-md-9 p-3 profile_content active" id="profile-infos">
-                    <div class="p-3">
+                <div class="col-md-9 p-3" >
+                    <div class="profile_content active p-3" id="profile-infos">
                         <h2 class="mb-4">Mes informations</h2>
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="container profile_form">
                             <div class="row">
@@ -119,7 +119,7 @@
                             <div class="row">
                                 <div class="col-md-6 profile_form-input">
                                     <label for="zipcode" class="form-label">Code postal</label>
-                                    <input type="input" id="zipcode" name="zipcode" class="form-control" value="<?php echo htmlspecialchars(($user['zipcode']))?>">
+                                    <input type="number" id="zipcode" name="zipcode" class="form-control" value="<?php echo htmlspecialchars(($user['zipcode']))?>">
                                 </div>
                                 <div class="col-md-6 profile_form-input">
                                     <label for="country" class="form-label">Pays</label>
@@ -136,13 +136,13 @@
                                 <button type="submit" class="d-block btn btn-primary ms-auto">Enregistrer</button>
                             </div>
                         </form>
+                    </div>  
+                    <div class="p-3 profile_content" id="profile-recipes">
+                        <h2 class="mb-4">Mes recettes</h2>
                     </div>
-                </div>
-                <div class="col-md-9 p-3 profile_content" id="profile-recipes">
-                    Mes recettes
-                </div>
-                <div class="col-md-9 p-3 profile_content" id="profile-favorites">
-                    Mes favoris
+                    <div class="p-3 profile_content" id="profile-favorites">
+                        <h2 class="mb-4">Mes favoris</h2>
+                    </div>
                 </div>
             </div>
         </div>

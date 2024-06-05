@@ -5,13 +5,6 @@ require_once(__DIR__ . '/./databaseconnect.php');
 $pageTitle = 'Les recettes';
 ob_start();
 ?>
-<?php
-    $sql = "SELECT * from recipes";
-    $stmt = $mysqlClient->query($sql);
-
-    $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
-
-?>
 
 <!-- Recipes list -->
 <section id="recipes-section">
@@ -24,14 +17,7 @@ ob_start();
 
         <div class="row recipe_list d-flex justify-content-between">
             <?php foreach (getRecipes($recipes) as $recipe) : ?>
-                <div class="col-md-3 mb-3 recipe_thumbnail">
-                <a href="recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">
-                    <figure class="recipe_thumbnail-img">
-                        <img src="<?php echo $recipe['illustration']?>"/>
-                    </figure>
-                    <h3><?php echo $recipe['title']; ?></h3>
-                </a>
-                </div>
+                <?php require (__DIR__ . '/views/recipe-thumbnail.php'); ?>
             <?php endforeach ?>
         </div>
     </div>

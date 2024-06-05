@@ -20,14 +20,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
 
     <div class="row recipe_list d-flex gap-4">
         <?php foreach (getRecipes($recipes) as $recipe) : ?>
-            <div class="col-md-3 recipe_thumbnail">
-            <a href="recipe-template.php?id=<?php echo htmlspecialchars($recipe['id'])?>">
-                <figure class="recipe_thumbnail-img">
-                    <img src="<?php echo $recipe['illustration']?>"/>
-                </figure>
-                <h3><?php echo $recipe['title']; ?></h3>
-            </a>
-            </div>
+            <?php require_once(__DIR__ . '/recipe-thumbnail.php'); ?>
         <?php endforeach ?>
     </div>
 </div>
