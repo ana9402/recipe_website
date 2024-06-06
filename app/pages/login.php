@@ -8,6 +8,12 @@ session_start();*/
 // Définir le contenu de la page
 ob_start();
 
+if($_SESSION['user_id']) 
+{
+    header('Location: ../index.php');
+    exit();
+}
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = 'localhost';
     $dbUsername = 'root';
@@ -34,13 +40,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if (password_verify($password, $hashed_password)) {
             // Authentification réussie
+            $validPassword = true;
             $_SESSION['user_id'] = $user_id;
             $_SESSION['email'] = $email;
             header('Location: ../index.php');
             exit();
         } else {
             // Mot de passe incorrect
-            echo 'Nom d\'utilisateur ou mot de passe incorrect, damn';
+            $validPassword = false;
         }
     } else {
         // Utilisateur non trouvé

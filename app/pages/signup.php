@@ -7,6 +7,13 @@ $pageTitle = 'S\'inscrire';
 
 // Définir le contenu de la page
 ob_start();
+
+if($_SESSION['user_id']) 
+{
+    header('Location: ../index.php');
+    exit();
+}
+
 ?>
 
 <?php

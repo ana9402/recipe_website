@@ -53,7 +53,7 @@ h2 {
 }
 
 .btn-primary {
-    background-color: #e89b9b !important;
+    background-color: #071e82 !important;
     border-radius: 20px !important;
     color: white !important;
     border: transparent !important;
@@ -61,8 +61,9 @@ h2 {
 }
 
 .btn-primary:hover {
-    background-color: #071e82 !important;
-}
+    background-color: #365bc3 !important;
+    color: white !important;
+}z
 
 .btn-primary a {
     color: white !important;
@@ -110,6 +111,11 @@ footer .footer-links_item a {
 }
 
 /*************** NAVBAR ***************/
+
+.navbar .btn-primary a {
+    color: white !important;
+}
+
 .navbar form {
     min-width: 300px;
 }
@@ -169,6 +175,7 @@ a {
 .signin-block_form_input input {
     border: 0;
     border-bottom: 1px grey solid;
+    border-radius: 0;
 
 }
 
