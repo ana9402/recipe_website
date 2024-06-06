@@ -1,22 +1,18 @@
 <?php
 
-require_once(__DIR__ . '/../core/init.php');
-require_once(__DIR__ . '/../config/mysql.php');
-require_once(__DIR__ . '/../databaseconnect.php');
-$pageTitle = 'S\'inscrire';
+    require_once(__DIR__ . '/../core/init.php');
+    require_once(__DIR__ . '/../config/mysql.php');
+    require_once(__DIR__ . '/../databaseconnect.php');
+    $pageTitle = 'S\'inscrire';
 
-// Définir le contenu de la page
-ob_start();
+    ob_start();
 
-if($_SESSION['user_id']) 
-{
-    header('Location: ../index.php');
-    exit();
-}
-
-?>
-
-<?php
+    if(isset($_SESSION['user_id'])) 
+    {
+        header('Location: ../index.php');
+        exit();
+    }
+    
     if($_SERVER["REQUEST_METHOD"] == "POST") { 
         
         $username = $_REQUEST['username'];

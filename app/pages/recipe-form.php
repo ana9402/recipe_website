@@ -1,13 +1,17 @@
 <?php
-require_once(__DIR__ . '/../core/init.php');
-require_once(__DIR__ . '/../config/mysql.php');
-require_once(__DIR__ . '/../databaseconnect.php');
-$pageTitle = 'Partager une recette';
+    require_once(__DIR__ . '/../core/init.php');
+    require_once(__DIR__ . '/../config/mysql.php');
+    require_once(__DIR__ . '/../databaseconnect.php');
+    $pageTitle = 'Partager une recette';
 
-ob_start();
-?>
+    ob_start();
 
-<?php
+    if(!isset($_SESSION['user_id']))
+    {
+        header('Location: login.php');
+        exit();
+    }
+
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         $title = $_REQUEST['title'];
         $category_id = $_REQUEST['category'];
