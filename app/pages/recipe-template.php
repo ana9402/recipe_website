@@ -1,8 +1,9 @@
 <?php
-
 require_once (__DIR__ . '/../core/init.php');
 require_once (__DIR__ . '/../config/mysql.php');
 require_once (__DIR__ . '/../databaseconnect.php');
+require_once (__DIR__ . '/../functions.php');
+
 $pageTitle = 'Recette';
 
 ob_start();
@@ -38,10 +39,13 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                     <button class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         ...
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end mt-2">
+                    <div class="dropdown-menu dropdown-menu-end mt-2">
                         <li><a class="dropdown-item" href="#">Modifier</a></li>
-                        <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                    </ul>
+                        <li><a class="dropdown-item" href="#" onclick="confirmDeletion(<?php echo $id ?>, event)">Supprimer</a></li>
+                        <form id="deleteRecipeForm" method="post" action="/website_recipe/app/scripts/recipe_delete.php" style="display: none;">
+                                <input type="hidden" name="recipeId" id="recipeId">
+                        </form>
+                    </div>
                 </div>
                 <?php endif; ?>
             </div>
@@ -87,6 +91,7 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
     </div>
 </section>
 
+<script src="/website_recipe/app/js/script.js"></script>
 
 <?php
 $content = ob_get_clean();

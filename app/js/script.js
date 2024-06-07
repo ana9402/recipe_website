@@ -28,3 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Confirm Deletion
+function confirmDeletion(recipe_id, event) {
+    event.preventDefault();
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette recette ?')) {
+        // Met à jour l'identifiant de la recette dans le formulaire caché
+        document.getElementById('recipeId').value = recipe_id;
+        // Soumet le formulaire
+        document.getElementById('deleteRecipeForm').submit();
+    }
+}
