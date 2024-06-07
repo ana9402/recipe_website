@@ -14,49 +14,6 @@
         exit();
     }
 
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $servername = 'localhost';
-        $dbUsername = 'root';
-        $dbPassword = 'root';
-        $dbname = 'recipe_website';
-
-        $email = $_POST['login-email'];
-        $password = $_POST['login-password'];
-
-        $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbname);
-
-        if ($conn->connect_error) {
-            die('Erreur de connexion : ' . $conn->connect_error);
-        }
-
-        $stmt = $conn->prepare('SELECT user_id, email, password FROM users WHERE email = ?');
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $stmt->store_result();
-        
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($user_id, $email, $hashed_password);
-            $stmt->fetch();
-            
-            if (password_verify($password, $hashed_password)) {
-                // Authentification réussie
-                $validPassword = true;
-                $_SESSION['user_id'] = $user_id;
-                $_SESSION['email'] = $email;
-                header('Location: ../index.php');
-                exit();
-            } else {
-                // Mot de passe incorrect
-                $validPassword = false;
-            }
-        } else {
-            // Utilisateur non trouvé
-            echo 'Erreur, Nom d\'utilisateur ou mot de passe incorrect';
-        }
-
-        $stmt->close();
-        $conn->close();
-    }
 ?>
 
 <!-- contenu du site -->
@@ -66,7 +23,7 @@
             <h1 class="text-center mb-3">Se connecter</h1>
             <p class="text-center">Accédez à votre espace.</p>
             <div class="signin-block my-auto p-5">
-                <form method="post" action="login.php" class="signin-block_form">
+                <form method="post" action="/website_recipe/app/scripts/users/user_login.php" class="signin-block_form">
                     <div class="d-flex flex-column gap-3">
                         <div class="d-flex flex-column signin-block_form_input">
                             <label for="login-email" class="form-label visually-hidden">Email</label>
