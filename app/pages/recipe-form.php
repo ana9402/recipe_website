@@ -22,6 +22,7 @@
         $cook_time = $_REQUEST['cook-time'];
         $servings = $_REQUEST['servings'];
         $description = $_REQUEST['description'];
+        $author = $_SESSION['user_id'];
 
         // Check file
         if(isset($_FILES['illustration']) && $_FILES['illustration']['error'] == UPLOAD_ERR_OK) {
@@ -40,9 +41,9 @@
         }
 
 
-        $sql = "INSERT INTO recipes (title, category_id, ingredients, tools, prep_time, rest_time, cook_time, servings, description, illustration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO recipes (title, category_id, ingredients, tools, prep_time, rest_time, cook_time, servings, description, illustration, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $mysqlClient = $mysqlClient->prepare($sql);
-        $mysqlClient->execute([$title, $category_id, $ingredients, $tools, $prep_time, $rest_time, $cook_time, $servings, $description, $illustration]);
+        $mysqlClient->execute([$title, $category_id, $ingredients, $tools, $prep_time, $rest_time, $cook_time, $servings, $description, $illustration, $author]);
 
         header("Location: /website_recipe/app/index.php");
         exit();

@@ -42,7 +42,7 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                     <div class="dropdown-menu dropdown-menu-end mt-2">
                         <li><a class="dropdown-item" href="#">Modifier</a></li>
                         <li><a class="dropdown-item" href="#" onclick="confirmDeletion(<?php echo $id ?>, event)">Supprimer</a></li>
-                        <form id="deleteRecipeForm" method="post" action="/website_recipe/app/scripts/recipe_delete.php" style="display: none;">
+                        <form id="deleteRecipeForm" method="post" action="/website_recipe/app/scripts/recipes/recipe_delete.php" style="display: none;">
                                 <input type="hidden" name="recipeId" id="recipeId">
                         </form>
                     </div>

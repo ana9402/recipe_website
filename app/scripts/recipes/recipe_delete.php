@@ -1,7 +1,7 @@
 <?php
-require_once (__DIR__ . '/../core/init.php');
-require_once(__DIR__ . '/../config/mysql.php');
-require_once(__DIR__ . '/../databaseconnect.php');
+require_once (__DIR__ . '/../../core/init.php');
+require_once(__DIR__ . '/../../config/mysql.php');
+require_once(__DIR__ . '/../../databaseconnect.php');
 
 if (isset($_POST['recipeId']))
 {
