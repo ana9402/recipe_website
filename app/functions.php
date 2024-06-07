@@ -4,6 +4,14 @@
 require_once(__DIR__ . '/config/mysql.php');
 require_once(__DIR__ . '/databaseconnect.php');
 
+// Redirect to ->
+function redirectToUrl(string $url) : never 
+{
+    header("Location: {$url}");
+    exit();
+}
+
+
 // Check if recipe is valid
 function isValidRecipe(array $recipe) : bool
 {

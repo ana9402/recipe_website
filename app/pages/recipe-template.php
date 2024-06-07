@@ -16,6 +16,12 @@ $sql = 'SELECT recipes.*, categories.name AS category_name, users.username as us
 $stmt = $mysqlClient->prepare($sql);
 $stmt->execute(['id' => $id]);
 $recipe = $stmt->fetch();
+
+if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) 
+{
+    $isAuthor = true;
+}
+
 ?>
 
 <section id="recipeTemplate-section">
@@ -27,6 +33,17 @@ $recipe = $stmt->fetch();
                     <span> > </span>
                     <span><?php echo htmlspecialchars($recipe['title'])?></span>
                 </p>
+                <?php if (isset($isAuthor)): ?>
+                <div class="action-btn dropdown">
+                    <button class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ...
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end mt-2">
+                        <li><a class="dropdown-item" href="#">Modifier</a></li>
+                        <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
             <?php if ($recipe): ?>
                 <h1 class="text-center mb-2"><?php echo htmlspecialchars($recipe['title']) ?></h1>

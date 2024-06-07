@@ -77,16 +77,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-3 p-3">
                     <ul class="profile_menu p-3">
                         <li class="profile_menu-link">
-                            <a href="?tab=profile-infos" data-tab="profile-infos" class="active"><i class="fa-solid fa-user"></i>Mes informations</a>
+                            <a href="#profile-infos" data-tab="profile-infos" class="active"><i
+                                    class="fa-solid fa-user"></i>Mes informations</a>
                         </li>
                         <li class="profile_menu-link">
-                            <a href="?tab=profile-recipes" data-tab="profile-recipes">
+                            <a href="#profile-recipes" data-tab="profile-recipes">
                                 <i class="fa-solid fa-bowl-rice"></i>
                                 Mes recettes
                             </a>
                         </li>
                         <li class="profile_menu-link">
-                            <a href="?tab=profile-favorites" data-tab="profile-favorites">
+                            <a href="#profile-favorites" data-tab="profile-favorites">
                                 <i class="fa-solid fa-heart"></i>
                                 Mes favoris
                             </a>
@@ -188,12 +189,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h2>Mes favoris</h2>
                     </section>
                 </div>
-            </>
+            </div>
         </div>
     </div>
 </div>
 
-<script src="./js/script.js"></script>
+
+<script src="/website_recipe/app/js/script.js"></script>
 
 <?php
 $content = ob_get_clean();

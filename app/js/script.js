@@ -16,9 +16,6 @@ function openTab(event, tabName) {
     if(event) {
         event.currentTarget.classList.add('active');
     }
-
-        var newUrl = window.location.origin + window.location.pathname + '?tab=' + tabName;
-        window.history.pushState({path: newUrl}, '', newUrl);
     }
 
 document.addEventListener('DOMContentLoaded', function() {
