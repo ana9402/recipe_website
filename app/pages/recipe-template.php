@@ -34,7 +34,7 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                     <span> > </span>
                     <span><?php echo htmlspecialchars($recipe['title'])?></span>
                 </p>
-                <?php if (isset($isAuthor)): ?>
+                <?php if (isset($isAuthor) || isset($_SESSION['role']) == 2): ?>
                 <div class="action-btn dropdown">
                     <button class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         ...

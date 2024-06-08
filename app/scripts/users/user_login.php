@@ -19,13 +19,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             die('Erreur de connexion : ' . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare('SELECT user_id, email, password FROM users WHERE email = ? AND is_enabled = 1');
+        $stmt = $conn->prepare('SELECT user_id, email, password, role_id FROM users WHERE email = ? AND is_enabled = 1');
         $stmt->bind_param('s', $email);
         $stmt->execute();
         $stmt->store_result();
         
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($user_id, $email, $hashed_password);
+            $stmt->bind_result($user_id, $email, $hashed_password, $role_id);
             $stmt->fetch();
             
             if (password_verify($password, $hashed_password)) {
@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $validPassword = true;
 
                 $_SESSION['user_id'] = $user_id;
-                $_SESSION['email'] = $email;
+                $_SESSION['role'] = $role_id;
                 header('Location: /website_recipe/app/index.php');
                 exit();
             } else {
