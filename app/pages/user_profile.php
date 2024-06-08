@@ -55,8 +55,7 @@ if (isset($_SESSION['user_id'])) {
             <h1 class="text-center">Mon profil</h1>
             <figure>
                 <img src="<?php echo htmlspecialchars($user['illustration']); ?>" alt="" />
-                <button class="edit-btn" id="user-profile-picture-upload-btn" onclick="document.getElementById('illustration').click();">
-                    <i class="fa-solid fa-pen"></i>
+                <button class="" id="user-profile-picture-upload-btn" onclick="document.getElementById('illustration').click();">
                 </button>
                 <form method="post" action="/website_recipe/app/scripts/users/user_edit-picture.php" enctype="multipart/form-data" id="user-illustration-form">
                     <input type="file" id="illustration" name="illustration" style="display:none;">

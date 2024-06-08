@@ -110,17 +110,6 @@ h2 {
     box-shadow: 1px 1px 3px rgb(172, 169, 169);
 }
 
-.action-btn button {
-    color: rgb(112, 110, 110) !important;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.edit-btn {
-    border: 1px solid rgb(84, 81, 81);
-    background-color: darkgrey;
-    border-radius: 4px;
-}
 
 /*************** FOOTER ***************/
 footer .footer-links_item {
@@ -316,12 +305,14 @@ a {
     position: relative;
 }
 
-#profile-page figure button.edit-btn {
+#profile-page figure button#user-profile-picture-upload-btn{
     position: absolute;
     top: 0;
     right: 0;
-    height: 25px;
-    width: 25px;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
 
 }
 
