@@ -49,8 +49,8 @@
           <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php echo htmlspecialchars($userInfo['illustration'])?>" alt="" ></a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="http://localhost:8888/website_recipe/app/pages/user_profile.php"><i class="fa-solid fa-user me-2" aria-hidden="true"></i>Voir mon profil</a></li>
-            <?php if(isset($_SESSION['role']) == "2"): ?>
-            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-wrench me-2" aria-hidden="true"></i>Administration</a></li>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 2): ?>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-wrench me-2" aria-hidden="true"></i>Administration</a></li>
             <?php endif; ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="http://localhost:8888/website_recipe/app/pages/logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Se déconnecter</a></li>

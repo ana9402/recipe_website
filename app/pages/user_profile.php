@@ -156,25 +156,29 @@ if (isset($_SESSION['user_id'])) {
                     <section class="p-3 profile_content" id="profile-recipes">
                         <h2>Mes recettes</h2>
                         <div class="row recipe_list d-flex">
+                            <?php if(!$user_recipes) { echo "Vous n'avez pas encore publié de recette."; };?>
                             <?php foreach ($user_recipes as $recipe): ?>
                                 <?php require (__DIR__ . '/../views/recipe-thumbnail.php'); ?>
                             <?php endforeach ?>
                             <ul class="pagination mt-4">
+                                <?php if($user_recipes): ?>
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <?php
-                                for ($i = 1; $i <= $totalPages; $i++) {
-                                    echo '<li class="page-item"><a class="page-link" href="?tab=profile-recipes&?page=' . $i . '">' . $i . '</a></li>';
-                                }
+                                <?php if($user_recipes) {
+                                    for ($i = 1; $i <= $totalPages; $i++) {
+                                        echo '<li class="page-item"><a class="page-link" href="?tab=profile-recipes&?page=' . $i . '">' . $i . '</a></li>';
+                                    }
+                                }   
                                 ?>
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </section>
