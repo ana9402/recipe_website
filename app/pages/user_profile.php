@@ -19,8 +19,11 @@ if (isset($_SESSION['user_id'])) {
     }
 
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT * FROM users WHERE user_id = $user_id";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM users WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
@@ -30,37 +33,17 @@ if (isset($_SESSION['user_id'])) {
         $nb_recipes = count($user_recipes);
         $recipesPerPage = 2;
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $offset = ($page - 1 * $recipesPerPage);
+        $offset = ($page - 1) * $recipesPerPage;
 
         $totalPages = ceil($nb_recipes / $recipesPerPage);
 
         $sql = "SELECT * FROM recipes WHERE user_id = $user_id LIMIT $recipesPerPage;";
         $user_recipes = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 
+    } else {
+        echo "Aucun utilisateur trouvé";
+        exit();
     }
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $address = $_POST['address'];
-    $city = $_POST['city'];
-    $zipcode = $_POST['zipcode'];
-    $country = $_POST['country'];
-    $bio = $_POST['bio'];
-
-    $sql = "UPDATE users SET username = ?, email = ?, firstname = ?, lastname = ?, address = ?, city = ?, zipcode = ?, country = ?, bio = ? WHERE user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssssssi", $username, $email, $firstname, $lastname, $address, $city, $zipcode, $country, $bio, $user_id);
-    $stmt->execute();
-
-
-    header("Location: user_profile.php");
-    exit();
-
 }
 ?>
 
@@ -98,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-9 p-3">
                     <section class="profile_content active p-3" id="profile-infos">
                         <h2>Mes informations</h2>
-                        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                        <form method="post" action="/website_recipe/app/scripts/users/user_edit.php"
                             class="container profile_form">
                             <div class="row">
                                 <div class="col-md-6 profile_form-input">
@@ -151,8 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="row">
                                 <div class="col-12 profile_form-input">
                                     <label for="bio" class="form-label">Bio</label>
-                                    <textarea id="bio" name="bio" class="form-control" rows="6"
-                                        value="<?php echo htmlspecialchars(($user['bio'])) ?>"></textarea>
+                                    <textarea id="bio" name="bio" class="form-control" rows="6"><?php echo htmlspecialchars(($user['bio'])) ?></textarea>
                                 </div>
                             </div>
                             <div>
@@ -200,4 +182,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 $content = ob_get_clean();
 require_once (__DIR__ . '/../views/layout.php')
-    ?>
+?>
