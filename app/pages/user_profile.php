@@ -91,7 +91,7 @@ if (isset($_SESSION['user_id'])) {
                                 </div>
                                 <div class="col-md-6 profile_form-input">
                                     <label for="email" class="form-label">E-mail *</label>
-                                    <input type="input" id="email" name="email" class="form-control"
+                                    <input type="email" id="email" name="email" class="form-control"
                                         value="<?php echo htmlspecialchars(($user['email'])) ?>" required>
                                 </div>
                             </div>

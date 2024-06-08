@@ -31,6 +31,18 @@ if (isset($_SESSION['user_id']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $country = isset($_POST['country']) ? $_POST['country'] : '';
     $bio = isset($_POST['bio']) ? $_POST['bio'] : '';
 
+    // Check if email already exists in db
+    $sql_check_email = "SELECT * FROM users WHERE email = ?";
+    $stmt_check_email = $conn->prepare($sql_check_email);
+    $stmt_check_email->bind_param("s", $email);
+    $stmt_check_email->execute();
+    $result_check_email = $stmt_check_email->get_result();
+
+if ($result_check_email->num_rows > 0) {
+    echo "Cet email est déjà utilisé par un autre utilisateur.";
+    // Arrêtez l'exécution du script ou affichez un message d'erreur approprié.
+    exit();
+}
 
     $sql = "UPDATE users SET username = ?, email = ?, firstname = ?, lastname = ?, address = ?, city = ?, zipcode = ?, country = ?, bio = ? WHERE user_id = ?";
     $stmt = $conn->prepare($sql);
