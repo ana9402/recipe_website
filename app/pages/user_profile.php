@@ -148,15 +148,24 @@ if (isset($_SESSION['user_id'])) {
                                     <textarea id="bio" name="bio" class="form-control" rows="6"><?php echo htmlspecialchars(($user['bio'])) ?></textarea>
                                 </div>
                             </div>
-                            <div>
+                            <div class="d-flex ">
+                                <a href="#" class="btn btn-secondary">Modifier mon mot de passe</a>
                                 <button type="submit" class="d-block btn btn-primary ms-auto">Enregistrer</button>
                             </div>
                         </form>
                     </section>
                     <section class="p-3 profile_content" id="profile-recipes">
                         <h2>Mes recettes</h2>
-                        <div class="row recipe_list d-flex">
-                            <?php if(!$user_recipes) { echo "Vous n'avez pas encore publié de recette."; };?>
+                        <div class="recipe_list d-flex">
+                            <?php if(isset($user_recipes) || (isset($user_recipes) && !$user_recipes)) { 
+                                echo '
+                                <div class="d-flex flex-column">
+                                    <p>Vous n\'avez pas encore publié de recette.</p>
+                                        <a class="btn btn-primary" href="/website_recipe/app/pages/recipe-form.php">Publier une recette</a>
+                                    </p>
+                                </div>
+                                ';
+                            };?>
                             <?php foreach ($user_recipes as $recipe): ?>
                                 <?php require (__DIR__ . '/../views/recipe-thumbnail.php'); ?>
                             <?php endforeach ?>
@@ -167,7 +176,7 @@ if (isset($_SESSION['user_id'])) {
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <?php if($user_recipes) {
+                                <?php if(isset($user_recipes) && $user_recipes) {
                                     for ($i = 1; $i <= $totalPages; $i++) {
                                         echo '<li class="page-item"><a class="page-link" href="?tab=profile-recipes&?page=' . $i . '">' . $i . '</a></li>';
                                     }
@@ -184,6 +193,17 @@ if (isset($_SESSION['user_id'])) {
                     </section>
                     <section class="p-3 profile_content" id="profile-favorites">
                         <h2>Mes favoris</h2>
+                        <div class="recipe_list d-flex">
+                            <?php if(!isset($user_favorites) || (isset($user_favorites) && !$user_favorites)) { 
+                                echo '
+                                <div class="d-flex flex-column">
+                                    <p>Vous n\'avez pas encore de recette favorite.</p>
+                                        <a class="btn btn-primary" href="/website_recipe/app/pages/recipe-form.php">Découvrir les recettes</a>
+                                    </p>
+                                </div>
+                                ';
+                            };?>
+                        </div>
                     </section>
                 </div>
             </div>

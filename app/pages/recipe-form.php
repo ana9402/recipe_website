@@ -66,7 +66,7 @@
 
                         </div>
                         <div class="row d-flex flex-row align-items-center gap-3 newRecipe-block_form_input">
-                            <label for="category" class="w-auto form-label">Type de plat</label>
+                            <label for="category" class="w-auto form-label">Catégorie *</label>
                             <select id="category" name="category" placeholder="" class="w-50 form-select" aria-label="Category selection">
                                 <option selected>Sélectionnez une catégorie</option>
                                 <option value="1">Entrée</option>
