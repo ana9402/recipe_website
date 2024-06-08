@@ -116,6 +116,12 @@ h2 {
     font-weight: bold;
 }
 
+.edit-btn {
+    border: 1px solid rgb(84, 81, 81);
+    background-color: darkgrey;
+    border-radius: 4px;
+}
+
 /*************** FOOTER ***************/
 footer .footer-links_item {
     list-style: none;
@@ -307,6 +313,16 @@ a {
     height:160px;
     width: 160px;
     border-radius: .375rem;
+    position: relative;
+}
+
+#profile-page figure button.edit-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+
 }
 
 #profile-page figure img {

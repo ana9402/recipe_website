@@ -4,6 +4,8 @@ require_once (__DIR__ . '/../config/mysql.php');
 require_once (__DIR__ . '/../databaseconnect.php');
 ob_start();
 
+error_reporting(E_ALL);
+
 if (isset($_SESSION['user_id'])) {
     $servername = "localhost";
     $username = "root";
@@ -53,6 +55,13 @@ if (isset($_SESSION['user_id'])) {
             <h1 class="text-center">Mon profil</h1>
             <figure>
                 <img src="<?php echo htmlspecialchars($user['illustration']); ?>" alt="" />
+                <button class="edit-btn" id="user-profile-picture-upload-btn" onclick="document.getElementById('illustration').click();">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <form method="post" action="/website_recipe/app/scripts/users/user_edit-picture.php" enctype="multipart/form-data" id="user-illustration-form">
+                    <input type="file" id="illustration" name="illustration" style="display:none;">
+                    </input>
+                </form>
             </figure>
             <p class="text-center txt-primary"><?php echo htmlspecialchars(($user['username'])) ?></p>
             <div class="row d-flex mt-5">
@@ -93,6 +102,9 @@ if (isset($_SESSION['user_id'])) {
                                     <label for="email" class="form-label">E-mail *</label>
                                     <input type="email" id="email" name="email" class="form-control"
                                         value="<?php echo htmlspecialchars(($user['email'])) ?>" required>
+                                    <?php if(isset($_GET['error_message'])): ?>
+                                    <p><?php echo htmlspecialchars($_GET['error_message']); ?></p>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="row">
@@ -178,6 +190,15 @@ if (isset($_SESSION['user_id'])) {
 
 
 <script src="/website_recipe/app/js/script.js"></script>
+<script>
+    const illustrationInput = document.getElementById('illustration');
+
+    illustrationInput.addEventListener('change', function() {
+        const form = document.getElementById('user-illustration-form');
+        form.submit();
+    });
+</script>
+
 
 <?php
 $content = ob_get_clean();
