@@ -29,7 +29,7 @@
           </li>
           <?php if(isset($_SESSION['user_id'])): ?>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:8888/website_recipe/app/pages/recipe-form.php">Partager une recette</a>
+              <a class="nav-link" href="http://localhost:8888/website_recipe/app/pages/recipe-creation.php">Partager une recette</a>
             </li>
           <?php endif; ?>
         </ul>
