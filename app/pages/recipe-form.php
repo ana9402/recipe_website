@@ -13,15 +13,29 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $title = $_REQUEST['title'];
-        $category_id = $_REQUEST['category'];
-        $ingredients = $_REQUEST['ingredients'];
-        $tools = $_REQUEST['ingredients'];
-        $prep_time = $_REQUEST['prep-time'];
-        $rest_time = $_REQUEST['rest-time'];
-        $cook_time = $_REQUEST['cook-time'];
-        $servings = $_REQUEST['servings'];
-        $description = $_REQUEST['description'];
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "root";
+        $dbname = "recipe_website";
+
+        // DB connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check DB connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $title = (isset($_POST['title'])) ? $_POST['title'] : '' ;
+        $category_id = (isset($_POST['category'])) ? $_POST['category'] : '';
+        $ingredients = (isset($_POST['ingredients'])) ? $_POST['ingredients'] : '';
+        $tools = (isset($_POST['tools'])) ? $_POST['tools'] : '';
+        $prep_time = (isset($_POST['prep-time'])) ? $_POST['prep-time'] : '';
+        $rest_time = (isset($_POST['rest-time'])) ? $_POST['rest-time'] : '';
+        $cook_time = (isset($_POST['cook-time'])) ? $_POST['cook-time'] : '';
+        $servings = (isset($_POST['servings'])) ? $_POST['servings'] : '';
+        $description = (isset($_POST['description'])) ? $_POST['description'] : '';
         $author = $_SESSION['user_id'];
 
         // Check file
@@ -42,11 +56,23 @@
 
 
         $sql = "INSERT INTO recipes (title, category_id, ingredients, tools, prep_time, rest_time, cook_time, servings, description, illustration, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $mysqlClient = $mysqlClient->prepare($sql);
-        $mysqlClient->execute([$title, $category_id, $ingredients, $tools, $prep_time, $rest_time, $cook_time, $servings, $description, $illustration, $author]);
+        $stmt = $conn->prepare($sql);
+        if ($stmt) {
+            $stmt->bind_param("sissiiiissi", $title, $category_id, $ingredients, $tools, $prep_time, $rest_time, $cook_time, $servings, $description, $illustration, $author);
+            $stmt->execute();
 
-        header("Location: /website_recipe/app/index.php");
-        exit();
+            if ($stmt->affected_rows > 0) {
+                $_SESSION["flash"] = ["type" => "success", "message" => "La recette a bien été publiée."];
+                header("Location: /website_recipe/app/index.php");
+                exit();
+            } else {
+                echo "Impossible de publier la recette";
+            }
+            $stmt->close();
+        } else {
+            echo "Error preparing statement: " . $conn->error;
+        }
+
     }
 
 ?>

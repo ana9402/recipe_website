@@ -3,6 +3,12 @@ require_once (__DIR__ . '/core/init.php');
 $pageTitle = 'Hello';
 
 ob_start();
+
+if (isset($_SESSION["flash"]))
+{
+    vprintf("<div class='alert alert-success' role='alert' %s>%s</div>", $_SESSION["flash"]);
+    unset($_SESSION["flash"]);
+}
 ?>
 
 <div class="main-container">
