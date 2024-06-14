@@ -112,3 +112,31 @@ function isAuthor(array $current_user, int $author) : bool
         return false;
     }
 }
+
+function getComments($conn, int $recipe_id) : array 
+{
+    $comments = [];
+    $sql = 
+        "SELECT comments.*, users.user_id
+        FROM recipes_comments AS comments
+        LEFT JOIN users ON comments.user_id = users.user_id
+        WHERE comments.recipe_id = ?
+        ORDER BY comments.created_at DESC";
+
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("i", $recipe_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            $comments[] = $row;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error preparing statement: " . $conn->error;
+    }
+
+    return $comments;
+}

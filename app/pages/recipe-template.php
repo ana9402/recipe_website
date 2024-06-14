@@ -9,6 +9,19 @@ $pageTitle = 'Recette';
 
 ob_start();
 
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "recipe_website";
+
+// DB connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check DB connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 $id = $_GET['id'];
 $sql = 'SELECT recipes.*, categories.name AS category_name, users.username as user_name
         FROM recipes
@@ -18,6 +31,8 @@ $sql = 'SELECT recipes.*, categories.name AS category_name, users.username as us
 $stmt = $mysqlClient->prepare($sql);
 $stmt->execute(['id' => $id]);
 $recipe = $stmt->fetch();
+
+$comments = getComments($conn, $recipe['id']);
 
 if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) 
 {
@@ -98,7 +113,15 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                         <button type="submit" form="comments-new" value="Publier">Publier</button>
                     </form>
                     <div id="comments-list">
-
+                        <?php 
+                            if(!empty($comments)) {
+                                foreach ($comments as $comment) {
+                                    require (__DIR__ . '/../views/comment.php');
+                                }
+                            } else {
+                                echo "Aucun commentaire n'a été publié pour le moment.";
+                            }
+                        ?>
                     </div>
                 </div>
                 <?php endif;  ?>
