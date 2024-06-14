@@ -48,6 +48,20 @@ require_once(__DIR__ . '/../databaseconnect.php');
         exit();
     }
 
+    $sql = "SELECT * FROM categories";
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if($result->num_rows > 0) {
+            $categories = $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            echo "Aucune catégorie trouvée";
+            exit();
+        }
+    }
+
 ?>
    <div class="container p-5">
         <div class="mx-auto mb-5 p-5 border shadow-sm w-75 bg-white rounded-block">
@@ -65,15 +79,11 @@ require_once(__DIR__ . '/../databaseconnect.php');
                             <label for="category" class="w-auto form-label">Catégorie *</label>
                             <select id="category" name="category" placeholder="" class="w-50 form-select" aria-label="Category selection">
                                 <option selected>Sélectionnez une catégorie</option>
-                                <option value="1">Entrée</option>
-                                <option value="2">Plat principal</option>
-                                <option value="3">Dessert</option>
-                                <option value="4">Accompagnement</option>
-                                <option value="5">Amuse-bouche</option>
-                                <option value="6">Boisson</option>
-                                <option value="7">Confiserie</option>
-                                <option value="8">Sauce</option>
-                                <option value="9">Pain & boulangerie</option>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option value="<?php echo $category['id']; ?>" <?php echo (isset($_GET['id']) && ($category['id'] == $recipe['category_id'])) ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($category["name"]); ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="d-flex flex-column newRecipe-block_form_input">
