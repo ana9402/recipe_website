@@ -105,12 +105,12 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
             <?php endif; ?>
         </section>
         <section class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
-                <h2>Commentaires</h2>
+                <h2>Commentaires (<?php echo count($comments); ?>)</h2>
                 <?php if(isset($_SESSION['user_id'])): ?>
                 <div>
                     <form method="post" action="/website_recipe/app/scripts/comments/comment_create.php?id=<?php echo htmlspecialchars($id) ?>" id="comments-new">
-                        <textarea id="comments-new_content" name="comments-new_content" rows="5" cols="95" placeholder="Rédigez un commentaire" required></textarea>
-                        <button type="submit" form="comments-new" value="Publier">Publier</button>
+                        <textarea id="comments-new_content" name="comments-new_content" rows="5" placeholder="Rédigez un commentaire" required></textarea>
+                        <button type="submit" form="comments-new" value="Publier" id="comments-new_btn" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                     <div id="comments-list">
                         <?php 

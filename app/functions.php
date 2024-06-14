@@ -117,7 +117,7 @@ function getComments($conn, int $recipe_id) : array
 {
     $comments = [];
     $sql = 
-        "SELECT comments.*, users.user_id
+        "SELECT comments.*, users.user_id, users.username AS user_username, users.illustration AS user_illustration
         FROM recipes_comments AS comments
         LEFT JOIN users ON comments.user_id = users.user_id
         WHERE comments.recipe_id = ?
