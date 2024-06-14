@@ -385,3 +385,7 @@ a {
 #profile-page .profile_content.active {
     display: block;
 }
+
+.recipe_list {
+    flex-wrap: wrap;
+}

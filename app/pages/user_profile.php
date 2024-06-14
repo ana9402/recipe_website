@@ -31,17 +31,6 @@ if (isset($_SESSION['user_id'])) {
         $user = $result->fetch_assoc();
         $user_recipes = getUserRecipes($conn, $user_id);
 
-        // Pagination
-        $nb_recipes = count($user_recipes);
-        $recipesPerPage = 2;
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $offset = ($page - 1) * $recipesPerPage;
-
-        $totalPages = ceil($nb_recipes / $recipesPerPage);
-
-        $sql = "SELECT * FROM recipes WHERE user_id = $user_id LIMIT $recipesPerPage;";
-        $user_recipes = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
-
     } else {
         echo "Aucun utilisateur trouvé";
         exit();
@@ -157,7 +146,7 @@ if (isset($_SESSION['user_id'])) {
                     <section class="p-3 profile_content" id="profile-recipes">
                         <h2>Mes recettes</h2>
                         <div class="recipe_list d-flex">
-                            <?php if(isset($user_recipes) || (isset($user_recipes) && !$user_recipes)) { 
+                            <?php if(!isset($user_recipes) || (isset($user_recipes) && !$user_recipes)) { 
                                 echo '
                                 <div class="d-flex flex-column">
                                     <p>Vous n\'avez pas encore publié de recette.</p>
@@ -169,26 +158,6 @@ if (isset($_SESSION['user_id'])) {
                             <?php foreach ($user_recipes as $recipe): ?>
                                 <?php require (__DIR__ . '/../views/recipe-thumbnail.php'); ?>
                             <?php endforeach ?>
-                            <ul class="pagination mt-4">
-                                <?php if($user_recipes): ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <?php if(isset($user_recipes) && $user_recipes) {
-                                    for ($i = 1; $i <= $totalPages; $i++) {
-                                        echo '<li class="page-item"><a class="page-link" href="?tab=profile-recipes&?page=' . $i . '">' . $i . '</a></li>';
-                                    }
-                                }   
-                                ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                                <?php endif; ?>
-                            </ul>
                         </div>
                     </section>
                     <section class="p-3 profile_content" id="profile-favorites">
