@@ -36,6 +36,10 @@ require_once(__DIR__ . '/../databaseconnect.php');
                 exit();
             }
         }
+
+        $formAction = '/website_recipe/app/scripts/recipes/recipe_edit.php?id=' . $id;
+    } else {
+        $formAction = '/website_recipe/app/scripts/recipes/recipe_create.php';
     }
 
     if(!isset($_SESSION['user_id']))
@@ -50,7 +54,7 @@ require_once(__DIR__ . '/../databaseconnect.php');
             <h1 class="text-center mb-3"><i class="fa-solid fa-spoon me-2 text-secondary"></i> Partager une recette</h1>
             <p class="text-center mb-5">Renseignez un maximum d'informations afin d'aider au mieux les utilisateurs dans l'élaboration de votre recette.</p>
             <div class="newRecipe-block my-auto">
-                <form method="post" enctype="multipart/form-data" action="/website_recipe/app/scripts/recipes/recipe_create.php" class="newRecipe-block_form">
+                <form method="post" enctype="multipart/form-data" action="<?php echo $formAction ?>" class="newRecipe-block_form">
                     <div class="d-flex flex-column gap-3">
                         <div class="d-flex flex-column newRecipe-block_form_input">
                             <label for="title" class="form-label">Titre de la recette *</label>
