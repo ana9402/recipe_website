@@ -3,6 +3,7 @@ require_once (__DIR__ . '/../core/init.php');
 require_once (__DIR__ . '/../config/mysql.php');
 require_once (__DIR__ . '/../databaseconnect.php');
 require_once (__DIR__ . '/../functions.php');
+require_once (__DIR__ . '/../scripts/comments/comment_create.php');
 
 $pageTitle = 'Recette';
 
@@ -25,9 +26,9 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
 
 ?>
 
-<section id="recipeTemplate-section">
+<div id="recipeTemplate-section">
     <div class="container p-5">
-        <div class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
+        <section class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
             <div class="top-links">
                 <p>
                     <a href="recipes-list.php">Toutes les recettes</a>
@@ -87,9 +88,23 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
             <?php else: ?>
                 <p>La recette n'existe pas.</p>
             <?php endif; ?>
-        </div>
+        </section>
+        <section class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
+                <h2>Commentaires</h2>
+                <?php if(isset($_SESSION['user_id'])): ?>
+                <div>
+                    <form method="post" action="/website_recipe/app/scripts/comments/comment_create.php?id=<?php echo htmlspecialchars($id) ?>" id="comments-new">
+                        <textarea id="comments-new_content" name="comments-new_content" rows="5" cols="95" placeholder="Rédigez un commentaire" required></textarea>
+                        <button type="submit" form="comments-new" value="Publier">Publier</button>
+                    </form>
+                    <div id="comments-list">
+
+                    </div>
+                </div>
+                <?php endif;  ?>
+        </section>
     </div>
-</section>
+</div>
 
 <script src="/website_recipe/app/js/script.js"></script>
 
