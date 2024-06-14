@@ -30,12 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Confirm Deletion
-function confirmDeletion(recipe_id, event) {
+function confirmDeletion(recipe_id, event, confirmMessage, form) {
     event.preventDefault();
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette recette ?')) {
+
+    if (!form || form.trim() === '') {
+        console.error('ID du formulaire non valide :', form);
+        return;
+    }
+
+    if (confirm(confirmMessage)) {
         // Met à jour l'identifiant de la recette dans le formulaire caché
         document.getElementById('recipeId').value = recipe_id;
         // Soumet le formulaire
-        document.getElementById('deleteRecipeForm').submit();
+        document.getElementById(form).submit();
     }
 }

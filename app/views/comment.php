@@ -22,7 +22,10 @@ $isAuthor = (isset($_SESSION['user_id']) &&  $_SESSION['user_id'] == $comment['u
                     <button class="" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                     <ul class="dropdown-menu dropdown-menu-end mt-2">
                         <li><a class="dropdown-item" href="#">Modifier</a></li>
-                        <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="confirmDeletion(<?php echo htmlspecialchars($comment['id']) ?>, event, 'Êtes-vous sûr(e) de vouloir supprimer ce commentaire ?', 'deleteCommentForm')">Supprimer</a></li>
+                        <form id="deleteCommentForm" method="post" action="/website_recipe/app/scripts/comments/comment_delete.php" style="display: none;">
+                                <input type="hidden" name="commentId" id="commentId" value="<?php echo htmlspecialchars($comment['id']) ?>">
+                        </form>
                     </ul>
                 </div>
             <?php endif; ?>
