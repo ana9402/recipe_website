@@ -76,6 +76,11 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                         <img src="<?php echo htmlspecialchars($recipe['illustration'])?>" alt=""/>
                     </figure>
                 </div>
+                <div class="row justify-content-center recipe-block px-5">
+                    <div class="col-auto"><i class="fa-regular fa-heart"></i> favoris</div>
+                    <div class="col-auto"><i class="fa-regular fa-message"></i> commentaires</div>
+                    <div class="col-auto"><i class="fa-solid fa-share-nodes"></i> shares</div>
+                </div>
                 <div class="recipe-block recipe-block_rating">
                     <?php if (isset($recipe['rating'])): ?>
                         <?php echo htmlspecialchars($recipe['rating']) ?>/5
@@ -87,17 +92,17 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                     <div class="recipe-block_description-elt">
                         <h2>
                             <i class="fa-solid fa-plate-wheat"></i>Ingrédients</h2>
-                        <p><?php echo htmlspecialchars($recipe['ingredients']) ?></p>
+                        <p><?php echo nl2br(htmlspecialchars($recipe['ingredients'])) ?></p>
                     </div>
                     <div class="recipe-block_description-elt">
                         <h2>
                             <i class="fa-solid fa-utensils"></i>Ustensiles</h2>
-                        <p><?php echo htmlspecialchars($recipe['tools']) ?></p>
+                        <p><?php echo nl2br(htmlspecialchars($recipe['tools'])) ?></p>
                     </div>
                     <div class="recipe-block_description-elt">
                         <h2>
                             <i class="fa-solid fa-fire-burner"></i>Préparation</h2>
-                        <p><?php echo htmlspecialchars($recipe['description']) ?></p>
+                        <p><?php echo nl2br(htmlspecialchars($recipe['description'])) ?></p>
                     </div>
                 </div>
             <?php else: ?>
@@ -106,12 +111,13 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
         </section>
         <section class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
                 <h2>Commentaires (<?php echo count($comments); ?>)</h2>
-                <?php if(isset($_SESSION['user_id'])): ?>
                 <div>
+                    <?php if(isset($_SESSION['user_id'])): ?>
                     <form method="post" action="/website_recipe/app/scripts/comments/comment_create.php?id=<?php echo htmlspecialchars($id) ?>" id="comments-new">
                         <textarea id="comments-new_content" name="comments-new_content" rows="5" placeholder="Rédigez un commentaire" required></textarea>
                         <button type="submit" form="comments-new" value="Publier" id="comments-new_btn" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
                     </form>
+                    <?php endif;  ?>
                     <div id="comments-list">
                         <?php 
                             if(!empty($comments)) {
@@ -119,12 +125,11 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                                     require (__DIR__ . '/../views/comment.php');
                                 }
                             } else {
-                                echo "Aucun commentaire n'a été publié pour le moment.";
+                                echo "<p>Aucun commentaire n'a été publié pour le moment.</p>";
                             }
                         ?>
                     </div>
                 </div>
-                <?php endif;  ?>
         </section>
     </div>
 </div>

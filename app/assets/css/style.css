@@ -356,6 +356,11 @@ a {
     color: grey;
 }
 
+#comments-list {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
 /********** USER PROFILE **********/
 #profile-page .profile_menu {
     padding-left: 0;
