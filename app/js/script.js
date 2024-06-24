@@ -45,3 +45,22 @@ function confirmDeletion(recipe_id, event, confirmMessage, form) {
         document.getElementById(form).submit();
     }
 }
+
+function addToFavorite(user_id, recipe_id) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/website_recipe/app/scripts/favorites/favorite_add.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var recipeLikeIcon = document.querySelector('.recipe-like i');
+            if (recipeLikeIcon.classList.contains('active')) {
+                recipeLikeIcon.classList.remove('fa-regular', 'active');
+                recipeLikeIcon.classList.add('fa-solid')
+            } else {
+                recipeLikeIcon.classList.add('fa-regular', 'active');
+                recipeLikeIcon.classList.remove('fa-solid')
+            }
+        }
+    };
+    xhr.send("user_id=" + user_id + "&recipe_id=" + recipe_id);
+}

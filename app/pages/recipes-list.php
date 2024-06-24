@@ -17,7 +17,7 @@ ob_start();
             </h1>
         </div>
 
-        <div class="row recipe_list d-flex justify-content-between">
+        <div class="row recipe_list d-flex justify-content-start">
             <?php $recipes = addPagination();
             foreach ($recipes as $recipe) : ?>
                 <?php require (__DIR__ . '/../views/recipe-thumbnail.php'); ?>

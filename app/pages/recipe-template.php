@@ -22,6 +22,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$user_id = $_SESSION['user_id'];
 $id = $_GET['id'];
 $sql = 'SELECT recipes.*, categories.name AS category_name, users.username as user_name
         FROM recipes
@@ -79,9 +80,9 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                     </figure>
                 </div>
                 <div class="row justify-content-center recipe-block px-5">
-                    <div class="col-auto"><i class="fa-regular fa-heart"></i> favoris</div>
+                    <div class="col-auto recipe-like"><a href="#" onclick="addToFavorite(<?php echo htmlspecialchars($user_id) ?>, <?php echo htmlspecialchars($id) ?>); return false;"><i class="fa-regular fa-heart"></i></a> favoris</div>
                     <div class="col-auto"><i class="fa-regular fa-message"></i> commentaires</div>
-                    <div class="col-auto"><i class="fa-solid fa-share-nodes"></i> shares</div>
+                    <div class="col-auto"><i class="fa-solid fa-share-nodes"></i> partages</div>
                 </div>
                 <div class="recipe-block recipe-block_rating">
                     <?php if (isset($recipe['rating'])): ?>

@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../core/init.php');
 require_once(__DIR__ . '/../config/mysql.php');
 require_once(__DIR__ . '/../databaseconnect.php');
 
-$sql = "SELECT * from recipes";
+$sql = "SELECT * from recipes ORDER BY id DESC LIMIT 4";
 $stmt = $mysqlClient->query($sql);
 
 $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
@@ -18,9 +18,13 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC)
         </h2>
     </div>
 
-    <div class="row recipe_list d-flex gap-4">
-        <?php foreach (getRecipes($recipes) as $recipe) : ?>
-            <?php require_once(__DIR__ . './recipe-thumbnail.php'); ?>
-        <?php endforeach ?>
+    <div class="row recipe_list d-flex gap-3">
+        <?php if (!empty($recipes)) : ?>
+            <?php foreach ($recipes as $recipe) : ?>
+                <?php require (__DIR__ . '/recipe-thumbnail.php'); ?>
+            <?php endforeach ?>
+        <?php else : ?>
+            <p>Aucune recette trouvée.</p>
+        <?php endif; ?>
     </div>
 </div>
