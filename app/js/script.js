@@ -46,7 +46,7 @@ function confirmDeletion(recipe_id, event, confirmMessage, form) {
     }
 }
 
-function addToFavorite(user_id, recipe_id) {
+function addToFavorite(user_id, recipe_id, favoritesCount) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/website_recipe/app/scripts/favorites/favorite_add.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -54,11 +54,13 @@ function addToFavorite(user_id, recipe_id) {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var recipeLikeIcon = document.querySelector('.recipe-like i');
             if (recipeLikeIcon.classList.contains('active')) {
-                recipeLikeIcon.classList.remove('fa-regular', 'active');
-                recipeLikeIcon.classList.add('fa-solid')
+                recipeLikeIcon.classList.remove('fa-solid', 'active');
+                recipeLikeIcon.classList.add('fa-regular')
+                favoritesCount.textContent = parseInt(favoritesCount.textContent) - 1;
             } else {
-                recipeLikeIcon.classList.add('fa-regular', 'active');
-                recipeLikeIcon.classList.remove('fa-solid')
+                recipeLikeIcon.classList.add('fa-solid', 'active');
+                recipeLikeIcon.classList.remove('fa-regular');
+                favoritesCount.textContent = parseInt(favoritesCount.textContent) + 1;
             }
         }
     };

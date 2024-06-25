@@ -140,3 +140,25 @@ function getComments($conn, int $recipe_id) : array
 
     return $comments;
 }
+
+function getFavorites($conn, int $recipe_id) : array 
+{
+    $favorites = [];
+    $sql = "SELECT * FROM users_favorites WHERE recipe_id = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("i", $recipe_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            $favorites[] = $row;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error preparing statement: " . $conn->error;
+    }
+
+    return $favorites;
+}

@@ -22,7 +22,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $id = $_GET['id'];
 $sql = 'SELECT recipes.*, categories.name AS category_name, users.username as user_name
         FROM recipes
@@ -34,12 +34,27 @@ $stmt->execute(['id' => $id]);
 $recipe = $stmt->fetch();
 
 $comments = getComments($conn, $recipe['id']);
+$favorites = getFavorites($conn, $recipe['id']);
 
 if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id']) 
 {
     $isAuthor = true;
 } else {
     $isAuthor = false;
+}
+
+$isFavorite = false;
+if (isset($_SESSION['user_id'])) {
+    $sql = "SELECT COUNT(*) AS count FROM users_favorites WHERE user_id = :user_id AND recipe_id = :recipe_id";
+    $stmt = $mysqlClient->prepare($sql);
+    $stmt->execute(['user_id' => $_SESSION['user_id'], 'recipe_id' => $id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result['count'] > 0) {
+        $isFavorite = true;
+    } else {
+        $isFavorite = false;
+    }
 }
 
 ?>
@@ -80,7 +95,8 @@ if(isset($_SESSION['user_id']) && $recipe['user_id'] == $_SESSION['user_id'])
                     </figure>
                 </div>
                 <div class="row justify-content-center recipe-block px-5">
-                    <div class="col-auto recipe-like"><a href="#" onclick="addToFavorite(<?php echo htmlspecialchars($user_id) ?>, <?php echo htmlspecialchars($id) ?>); return false;"><i class="fa-regular fa-heart"></i></a> favoris</div>
+                    <div class="col-auto recipe-like">
+                        <a href="#" onclick="addToFavorite(<?php echo htmlspecialchars($user_id) ?>, <?php echo htmlspecialchars($id) ?>, document.getElementById('favorites-count')); return false;"><i class="fa-heart <?php echo $isFavorite ? 'fa-solid active' : 'fa-regular' ?>"></i></a> <span id="favorites-count"><?php echo count($favorites) ?></span></div>
                     <div class="col-auto"><i class="fa-regular fa-message"></i> commentaires</div>
                     <div class="col-auto"><i class="fa-solid fa-share-nodes"></i> partages</div>
                 </div>
