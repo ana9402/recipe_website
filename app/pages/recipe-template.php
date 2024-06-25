@@ -97,8 +97,12 @@ if (isset($_SESSION['user_id'])) {
                 <div class="row justify-content-center recipe-block px-5">
                     <div class="col-auto recipe-like">
                         <a href="#" onclick="addToFavorite(<?php echo htmlspecialchars($user_id) ?>, <?php echo htmlspecialchars($id) ?>, document.getElementById('favorites-count')); return false;"><i class="fa-heart <?php echo $isFavorite ? 'fa-solid active' : 'fa-regular' ?>"></i></a> <span id="favorites-count"><?php echo count($favorites) ?></span></div>
-                    <div class="col-auto"><i class="fa-regular fa-message"></i> commentaires</div>
-                    <div class="col-auto"><i class="fa-solid fa-share-nodes"></i> partages</div>
+                    <div class="col-auto">
+                        <a href="#comments-section"><i class="fa-regular fa-message"></i></a> <?php echo count($comments) ?>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                    </div>
                 </div>
                 <div class="recipe-block recipe-block_rating">
                     <?php if (isset($recipe['rating'])): ?>
@@ -128,7 +132,7 @@ if (isset($_SESSION['user_id'])) {
                 <p>La recette n'existe pas.</p>
             <?php endif; ?>
         </section>
-        <section class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
+        <section id="comments-section" class="mx-auto mb-5 p-5 border shadow-sm bg-white rounded-block w-75">
                 <h2>Commentaires (<?php echo count($comments); ?>)</h2>
                 <div>
                     <?php if(isset($_SESSION['user_id'])): ?>
